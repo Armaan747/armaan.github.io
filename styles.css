@@ -153,3 +153,12 @@ table.data tbody th { font-weight: 500; color: var(--muted); }
 .plainlink { color: inherit; text-decoration: none; }
 .plainlink:hover { color: var(--accent); text-decoration: underline; }
 .item .more { margin-top: 12px; }
+
+.fig { margin: 18px 0 0; }
+.fig img { display: block; width: 100%; height: auto; border: 1px solid var(--line); border-radius: 8px; background: #fff; }
+.fig figcaption { margin-top: 8px; color: var(--muted); font-size: 0.9rem; max-width: 72ch; }
+.item.featured { display: grid; grid-template-columns: 220px 1fr; gap: 20px; align-items: start; }
+.item.featured .thumb { display: block; }
+.item.featured .thumb img { display: block; width: 100%; height: auto; border: 1px solid var(--line); border-radius: 8px; }
+.item.featured .body { min-width: 0; }
+@media (max-width: 640px) { .item.featured { grid-template-columns: 1fr; } }

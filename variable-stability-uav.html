@@ -10,7 +10,7 @@
 <meta property="og:description" content="1.8 m fixed-wing UAV: interactive 3D model, CFD and FEA results.">
 <meta property="og:type" content="article">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%232b4c7e'/%3E%3Ctext x='16' y='22' font-family='Arial' font-size='15' font-weight='700' fill='white' text-anchor='middle'%3EMA%3C/text%3E%3C/svg%3E">
-<link rel="stylesheet" href="styles.css?v=3">
+<link rel="stylesheet" href="styles.css?v=4">
 <style>
 /* Critical viewer layout, kept inline so the viewer never depends on a cached stylesheet. */
 .viewer{position:relative;width:100%;aspect-ratio:16/10;overflow:hidden}
@@ -47,6 +47,13 @@
   <p class="lead">A tail boom that extends and retracts in flight changes the horizontal tail volume coefficient, so the same airframe can favour stability or agility. A battery carriage moves the opposite way to keep the centre of gravity in place.</p>
 </section>
 
+<section class="wrap" aria-label="Photograph of the airframe">
+  <figure class="fig">
+    <img src="img/airframe.jpg" alt="Finished white foam-and-fibreglass fixed-wing UAV on paving, seen from above, with the tail boom and horizontal stabiliser extending behind the wing." width="792" height="347">
+    <figcaption>The finished airframe, 1.8 m span.</figcaption>
+  </figure>
+</section>
+
 <section class="wrap" aria-labelledby="h-model">
   <h2 id="h-model">Interactive model</h2>
 
@@ -76,9 +83,21 @@
   <noscript><p class="hint">The interactive model needs JavaScript.</p></noscript>
 </section>
 
+<section class="wrap" aria-labelledby="h-cad">
+  <h2 id="h-cad">CAD</h2>
+  <figure class="fig">
+    <img src="img/cad-views.jpg" alt="Orthographic and isometric views of the preliminary CAD model with the tail retracted, showing a 1800 mm span and 434 mm tail span." width="1200" height="660" loading="lazy">
+    <figcaption>Preliminary CAD, tail retracted. Dimensions in mm.</figcaption>
+  </figure>
+  <figure class="fig">
+    <img src="img/internal-side.jpg" alt="Cutaway side view of the fuselage showing motor, ESC, ESP32, flight controller, sliding battery cage, tail actuator and landing gear." width="867" height="399" loading="lazy">
+    <figcaption>Internal layout, side view: sliding battery cage, tail actuator, flight controller and ESP32.</figcaption>
+  </figure>
+</section>
+
 <section class="wrap" aria-labelledby="h-results">
   <h2 id="h-results">CFD results</h2>
-  <p class="plain">3D CFD in ANSYS Fluent (k-omega SST, about 3.6M cells, 18-point sweep). The fuselage forebody was re-lofted after early runs showed a destabilising positive pitching-moment slope. Values below are at 15 m/s.</p>
+  <p class="plain">3D CFD in ANSYS Fluent (k-omega SST, about 3.6M cells). The fuselage forebody was re-lofted after early runs showed a destabilising positive pitching-moment slope. Values below are at 15 m/s.</p>
   <table class="data">
     <caption class="sr-only">Retracted versus extended tail, from CFD</caption>
     <thead><tr><th scope="col"></th><th scope="col">Retracted</th><th scope="col">Extended</th></tr></thead>
@@ -89,6 +108,22 @@
       <tr><th scope="row">L/D at 0° angle of attack</th><td>7.61</td><td>8.51</td></tr>
     </tbody>
   </table>
+  <figure class="fig">
+    <img src="img/cfd-fuselage.jpg" alt="Side view of the revised fuselage with increased curvature on the upper forebody and decreased curvature underneath." width="1200" height="635" loading="lazy">
+    <figcaption>Revised fuselage forebody (increased curvature above, decreased below) after the first study showed a destabilising pitching-moment slope.</figcaption>
+  </figure>
+  <figure class="fig">
+    <img src="img/cfd-velocity.jpg" alt="Velocity contour plot around the fuselage and tail in the second CFD study." width="1200" height="818" loading="lazy">
+    <figcaption>Second CFD study, velocity contours.</figcaption>
+  </figure>
+  <figure class="fig">
+    <img src="img/cfd-cm.jpg" alt="Chart of total pitching-moment coefficient against angle of attack at 15 m/s for tail minimum, middle and maximum positions." width="1200" height="750" loading="lazy">
+    <figcaption>Pitching-moment coefficient against angle of attack at 15 m/s. Slope becomes steeper as the tail extends.</figcaption>
+  </figure>
+  <figure class="fig">
+    <img src="img/cfd-ld.jpg" alt="Chart of lift-to-drag ratio against angle of attack at 15 m/s for tail minimum, middle and maximum positions." width="1200" height="750" loading="lazy">
+    <figcaption>Lift-to-drag ratio against angle of attack at 15 m/s.</figcaption>
+  </figure>
 </section>
 
 <section class="wrap" aria-labelledby="h-design">
@@ -100,12 +135,29 @@
     <dt>FEA, 3g limit load</dt><dd>Wood wing spars (20 × 20 mm): minimum factor of safety 3.69, tip deflection 14.85 mm. Carbon tail boom: minimum factor of safety 21.7, tip deflection 4.99 mm.</dd>
     <dt>Avionics</dt><dd>CoreWing F405-Wing V2 running ArduPlane, MS4525DO airspeed sensor, 4S 4400 mAh battery</dd>
   </dl>
+  <figure class="fig">
+    <img src="img/controls.jpg" alt="Block diagram: radio receiver and two VL53L1X position sensors feed an ESP32, which drives two BTS7960 motor drivers and two linear actuators, powered through a buck converter." width="669" height="503" loading="lazy">
+    <figcaption>Control architecture: closed-loop position control of the tail boom and the battery carriage.</figcaption>
+  </figure>
 </section>
 
 <section class="wrap" aria-labelledby="h-build">
   <h2 id="h-build">Build and status</h2>
   <p class="plain">The wing and tail surfaces are hot-wire-cut XPS foam with two plies of 30 GSM fibreglass, wood spars, 3D-printed PETG mounts and carbon-fibre booms. The airframe has been ground-tested at taxi speeds up to 5 m/s, with the control surfaces and both actuators cycled under propulsion vibration. Flight trials are pending GCAA airspace clearance, and a 25 Hz data logger is configured to measure autopilot pitch workload against tail extension once flights resume.</p>
   <p class="plain">A copyright application has been filed for the design.</p>
+  <figure class="fig">
+    <img src="img/build-fuselage.jpg" alt="Partly assembled fuselage on a stand showing plywood base, wooden bulkheads and installed electronics." width="1200" height="675" loading="lazy">
+    <figcaption>Fuselage structure with electronics installed.</figcaption>
+  </figure>
+  <figure class="fig">
+    <img src="img/build-stabiliser.jpg" alt="Blue XPS foam horizontal stabiliser bonded to two carbon-fibre tail booms." width="1077" height="606" loading="lazy">
+    <figcaption>Horizontal stabiliser bonded to the carbon-fibre tail boom.</figcaption>
+  </figure>
+  <figure class="fig">
+    <img src="img/build-foam-cutter.jpg" alt="Custom hot-wire foam cutter built from wooden frame, resistance wire and a dimmer controller." width="1077" height="606" loading="lazy">
+    <figcaption>Custom hot-wire foam cutter used for the wing and tail surfaces.</figcaption>
+  </figure>
+
 </section>
 
 <section class="wrap" aria-labelledby="h-paper">
@@ -127,6 +179,6 @@
     }
   }, 10000);
 </script>
-<script type="module" src="js/viewer.js?v=3"></script>
+<script type="module" src="js/viewer.js?v=4"></script>
 </body>
 </html>
