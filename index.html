@@ -10,8 +10,8 @@
 <meta property="og:description" content="Fixed-wing UAV design, CFD/FEA, composite and 3D-printed airframes.">
 <meta property="og:type" content="website">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%232b4c7e'/%3E%3Ctext x='16' y='22' font-family='Arial' font-size='15' font-weight='700' fill='white' text-anchor='middle'%3EMA%3C/text%3E%3C/svg%3E">
-<link rel="stylesheet" href="styles.css?v=8">
-<script src="js/theme.js?v=8"></script>
+<link rel="stylesheet" href="styles.css?v=9">
+<script src="js/theme.js?v=9"></script>
 <style>
 /* Critical viewer layout, kept inline so the viewer never depends on a cached stylesheet. */
 .viewer{position:relative;width:100%;aspect-ratio:16/10;overflow:hidden}
@@ -103,10 +103,38 @@
     </div>
   </article>
 
-  <article class="item">
-    <h3>RC Cessna 172, 3D-Printed Flying Model</h3>
-    <p class="meta">1:8 scale · 1.42 m span · 3.6 kg AUW · 4S LiPo</p>
-    <p>Designed and fabricated with spiral-vase PETG wings and a three-piece fuselage. Flight-tested; the short endurance traced back to high structural weight.</p>
+  <article class="item featured">
+    <div class="f-head">
+      <h3><a class="plainlink" href="cessna-172.html">RC Cessna 172, 3D-Printed Flying Model</a></h3>
+      <p class="meta">1:8 scale · 1.42 m span · 3.6 kg AUW · 4S LiPo</p>
+    </div>
+    <p class="f-desc">Designed and fabricated with spiral-vase PETG wings and a three-piece fuselage. Flight-tested; the short endurance traced back to high structural weight.</p>
+
+    <div class="f-viewer">
+      <div id="cessna-viewer" class="viewer" role="group" aria-label="Interactive 3D model of the Cessna 172 with a section slider">
+        <canvas id="cessna-canvas" tabindex="0" aria-label="3D view. Drag to rotate, scroll to zoom, arrow keys to pan."></canvas>
+        <p id="cessna-status" class="viewer-status">Loading 3D model…</p>
+      </div>
+      <div class="viewer-ui">
+        <div class="slider-row stack">
+          <label for="cessna-sec">Section position</label>
+          <input id="cessna-sec" type="range" min="0" max="1063" step="1" value="0">
+          <output id="cessna-out-sec" for="cessna-sec">Off</output>
+        </div>
+        <div class="view-btns" role="group" aria-label="Camera views">
+          <button type="button" data-view="iso">Isometric</button>
+          <button type="button" data-view="top">Top</button>
+          <button type="button" data-view="side">Side</button>
+          <button type="button" data-view="front">Front</button>
+        </div>
+      </div>
+      <p class="hint">Drag to rotate, scroll or pinch to zoom. The slider cuts across the length of the aircraft, starting at the nose; the cut face is shaded blue-grey.</p>
+      <noscript><p class="hint">The interactive model needs JavaScript.</p></noscript>
+    </div>
+
+    <div class="f-facts">
+      <p class="more"><a href="cessna-172.html">CAD views and notes &rarr;</a></p>
+    </div>
   </article>
 
   <article class="item">
@@ -193,14 +221,14 @@
 </footer>
 
 <script>
-  // If the module viewer has not started after 10 s, say so plainly.
+  // If a module viewer has not started after 10 s, say so plainly.
   setTimeout(function () {
-    if (!window.__viewerReady) {
-      var s = document.getElementById('viewer-status');
-      if (s && !s.dataset.failed) { s.hidden = false; s.textContent = 'The 3D viewer did not start. Your browser may not support WebGL, or the files are still loading.'; }
-    }
+    document.querySelectorAll('.viewer-status').forEach(function (s) {
+      if (!s.dataset.ready && !s.dataset.failed) { s.hidden = false; s.textContent = 'The 3D viewer did not start. Your browser may not support WebGL, or the files are still loading.'; }
+    });
   }, 10000);
 </script>
-<script type="module" src="js/viewer.js?v=8"></script>
+<script type="module" src="js/viewer.js?v=9"></script>
+<script type="module" src="js/viewer-cessna.js?v=9"></script>
 </body>
 </html>

@@ -191,6 +191,10 @@ table.data tbody th { font-weight: 500; color: var(--muted); }
 .item.featured .f-viewer { grid-area: viewer; min-width: 0; }
 .item.featured .f-facts { grid-area: facts; min-width: 0; }
 .item.featured .f-viewer .viewer { margin-top: 6px; }
+.slider-row.stack { flex-wrap: wrap; gap: 6px 12px; }
+.slider-row.stack label { min-width: 0; }
+.slider-row.stack input[type="range"] { order: 3; flex-basis: 100%; }
+.slider-row.stack output { margin-left: auto; min-width: 0; }
 .item.featured .f-viewer .slider-row label { min-width: 0; }
 @media (max-width: 640px) {
   .item.featured { grid-template-columns: minmax(0, 1fr); grid-template-areas: "head" "desc" "viewer" "facts"; grid-template-rows: auto; }
