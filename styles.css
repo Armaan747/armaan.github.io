@@ -162,3 +162,12 @@ table.data tbody th { font-weight: 500; color: var(--muted); }
 .item.featured .thumb img { display: block; width: 100%; height: auto; border: 1px solid var(--line); border-radius: 8px; }
 .item.featured .body { min-width: 0; }
 @media (max-width: 640px) { .item.featured { grid-template-columns: 1fr; } }
+
+.hero { display: grid; grid-template-columns: 1fr 160px; gap: 32px; align-items: start; }
+.hero .portrait { grid-column: 2; grid-row: 1; width: 160px; height: auto; border: 1px solid var(--line); border-radius: 8px; background: #fff; }
+.hero .intro { grid-column: 1; grid-row: 1; min-width: 0; }
+@media (max-width: 560px) {
+  .hero { grid-template-columns: 1fr; gap: 20px; }
+  .hero .portrait { grid-column: 1; width: 112px; }
+  .hero .intro { grid-row: 2; }
+}
