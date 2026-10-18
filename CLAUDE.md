@@ -13,6 +13,9 @@ It is a project site, so the base path is `/armaan.github.io/`. Always use **rel
 - Mobile first. Nothing may scroll sideways at 390 px wide.
 - Prefer small, reviewable changes. Show a diff before committing.
 
+## Design skills
+Design skills are installed locally in `.claude/skills/` (kept out of git): `frontend-design`, `minimalist-ui`, `redesign-existing-projects`, plus Impeccable if installed. Use them for critique and direction, but the Principles above always win. In particular ignore any skill advice to add gradients, background photos, placeholder images (picsum), animation, emoji, or photos of people, and do not pull in fonts or assets from a CDN. Before any visual change, show a mock and get approval, and do not re-add a drawing, stats strip or section numbers (rejected earlier).
+
 ## Layout
 - `index.html`: single-page home (Projects, Experience, Publications, Skills, Contact). The flagship project card has a thumbnail.
 - `variable-stability-uav.html`: project page with the 3D viewer, CFD table, figures and build notes. Each new project gets its own page, copied from this one.
