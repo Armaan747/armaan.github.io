@@ -5,13 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light dark">
 <title>RC Cessna 172 – Mohammed Armaan</title>
-<meta name="description" content="Interactive 3D model with a section slider, and CAD views, of a 1:8 scale 3D-printed RC Cessna 172.">
+<meta name="description" content="1:8 scale 3D-printed RC Cessna 172: interactive 3D model, aerodynamic analysis, structure, build, first-flight failure analysis and the rebuild.">
 <meta property="og:title" content="RC Cessna 172, 3D-Printed Flying Model">
-<meta property="og:description" content="1:8 scale RC Cessna 172: interactive 3D model with a section slider.">
+<meta property="og:description" content="1:8 scale 3D-printed RC Cessna 172: design, analysis, build, two flights and what went wrong.">
 <meta property="og:type" content="article">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23c2410c'/%3E%3Ctext x='16' y='22' font-family='Arial' font-size='15' font-weight='700' fill='white' text-anchor='middle'%3EMA%3C/text%3E%3C/svg%3E">
-<link rel="stylesheet" href="styles.css?v=15">
-<script src="js/theme.js?v=15"></script>
+<link rel="stylesheet" href="styles.css?v=17">
+<script src="js/theme.js?v=17"></script>
 <style>
 /* Critical viewer layout, kept inline so the viewer never depends on a cached stylesheet. */
 .viewer{position:relative;width:100%;aspect-ratio:16/10;overflow:hidden}
@@ -45,8 +45,10 @@
 <section class="wrap page-head">
   <p class="crumb"><a href="index.html#projects">&larr; All projects</a></p>
   <h1 class="h1-sm">RC Cessna 172, 3D-Printed Flying Model</h1>
-  <dl class="plate page"><div><dt>Scale</dt><dd>1:8</dd></div><div><dt>Span</dt><dd>1.42 m</dd></div><div><dt>AUW</dt><dd>3.6 kg</dd></div><div><dt>Battery</dt><dd>4S LiPo</dd></div></dl>
-  <p class="lead">Designed and fabricated with spiral-vase PETG wings and a three-piece fuselage. Flight-tested; the short endurance traced back to high structural weight.</p>
+  <dl class="plate page"><div><dt>Scale</dt><dd>1:8</dd></div><div><dt>Span</dt><dd>1.42 m</dd></div><div><dt>AUW</dt><dd>3.6 kg</dd></div><div><dt>Battery</dt><dd>4S 3300 mAh LiPo</dd></div><div><dt>Status</dt><dd>Flown twice</dd></div></dl>
+  <p class="lead">A 1.42 m RC Cessna 172 drawn in SolidWorks from foamboard plans and printed in PETG on a desktop FDM printer. The first airframe took off but crashed after over-sensitive pitch control. The rebuilt airframe handled better, but trim and battery problems ended its flight in a second crash.</p>
+  <p class="actions"><a class="btn primary" href="https://www.linkedin.com/feed/update/urn:li:ugcPost:7433844352944283648/" target="_blank" rel="noopener noreferrer">Watch the flight on LinkedIn</a></p>
+  <p class="plain">Minor project for B.Tech Aerospace Engineering at Amity University Dubai. Report submitted 5 January 2026; faculty Dr Efstratios Ntantis. The sections below follow that report, which covers the first airframe. The rebuild is at the end.</p>
 </section>
 
 <section class="wrap" aria-labelledby="h-model">
@@ -79,26 +81,132 @@
   <noscript><p class="hint">The interactive model needs JavaScript.</p></noscript>
 </section>
 
-<section class="wrap" aria-labelledby="h-cad">
-  <h2 id="h-cad">CAD views</h2>
+<section class="wrap" aria-labelledby="h-basis">
+  <h2 id="h-basis">Design basis</h2>
+  <p class="plain">The geometry comes from the Flite Test foamboard Cessna 172 plans. They were imported into SolidWorks as scaled reference images, and the airframe was rebuilt parametrically rather than traced. Starting from an existing plan kept the project on manufacturing instead of sizing a new configuration. The goals were a stable high-wing trainer with better scale fidelity than foamboard, built from commodity PETG and off-the-shelf RC parts, at a lower cost than a comparable ready-to-fly trainer.</p>
+  <table class="data">
+    <thead><tr><th scope="col">Parameter</th><th scope="col">Value</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">Configuration</th><td>High wing, fixed tricycle gear, aileron, elevator, rudder and flaps</td></tr>
+      <tr><th scope="row">Wingspan</th><td>about 1420 mm (56 in)</td></tr>
+      <tr><th scope="row">Mean chord</th><td>about 230 mm</td></tr>
+      <tr><th scope="row">Wing area</th><td>about 0.32 to 0.34 m&sup2;, estimated from the plan</td></tr>
+      <tr><th scope="row">Airfoil</th><td>Clark Y based, slight dihedral</td></tr>
+      <tr><th scope="row">Tail sizing</th><td>Horizontal tail about 30% of wing area; vertical tail over 50% of horizontal tail area</td></tr>
+      <tr><th scope="row">Mass used in analysis</th><td>3.5 kg (foamboard reference: about 1.2 kg)</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="wrap" aria-labelledby="h-aero">
+  <h2 id="h-aero">Aerodynamic analysis</h2>
+  <h3>XFLR5</h3>
+  <p class="plain">The Clark Y section was analysed in 2D at 10 m/s, the take-off condition, which gives a Reynolds number of about 150,000, sweeping angle of attack from &minus;5&deg; to 20&deg;. The full aircraft was then modelled with both tail surfaces, a mass of 3.5 kg and the centre of gravity taken from the CAD model, at the same 10 m/s. The pitching moment slope against angle of attack is negative, so the aircraft is statically stable in pitch at that CG. These are simplified low-Reynolds-number models and the report gives no numerical static margin.</p>
+
+  <h3>Full-body CFD</h3>
+  <p class="plain">A steady-state external-flow simulation of the complete airframe at take-off conditions. Flow stays attached over the wing and tail and accelerates smoothly over the nose and cabin. Stagnation and wake regions sit at the nose, landing-gear struts and wheels, and turbulence intensity is highest in the gear wakes and at sharp fuselage transitions. The tail sits in largely undisturbed flow. The fixed landing gear is the main drag penalty. The report presents contours only, with no force coefficients.</p>
+    <figure class="fig">
+      <img src="img/cessna-cfd-velocity.jpg" alt="Velocity contours on a side plane through the aircraft, showing flow accelerating over the nose and cabin and slow wakes behind the landing gear." width="1200" height="671" loading="lazy">
+      <figcaption>Velocity contours.</figcaption>
+    </figure>
+</section>
+
+<section class="wrap" aria-labelledby="h-structure">
+  <h2 id="h-structure">Structure and manufacturing</h2>
+  <p class="plain">Each part was designed around FDM limits: the printer's 480 mm build height, print orientations that limit supports, and a 0.8 mm shell that equals two perimeters. External surfaces are airfoil-based surface lofts, thickened to a printable skin.</p>
+  <dl class="specs">
+    <dt>Vertical tail</dt><dd>Internal X-shaped lattice, patterned along the span and oriented to print upright without supports.</dd>
+    <dt>Horizontal tail</dt><dd>No internal structure, only low infill. A trailing-edge clearance gap for the elevator, and 1.5 mm steel rods as continuous hinge pins.</dd>
+    <dt>Wing</dt><dd>X-type rib and web lattice, with segments removed in low-stress regions and kept near the root and spar attachments. Channels for carbon-fibre spar tubes, and countersunk through-holes at the root for the wing bolts. Printed in two spanwise sections.</dd>
+    <dt>Fuselage</dt><dd>Lofted, then shelled to 0.8 mm (two perimeters) and split into three longitudinal sections to fit the build height. Internal ribs and formers, reinforced pass-throughs for the spring-steel landing gear, nut-retention pockets for the wing bolts, a motor mount, a nose-wheel servo mount and an avionics platform. Forward inlets and baffles guide air over the motor and electronics.</dd>
+  </dl>
+  <div class="fig-grid">
+    <figure class="fig">
+      <img src="img/cessna-wing-structure.jpg" alt="Cut view of the CAD wing showing the internal X-pattern ribs and webs between the skins." width="1175" height="699" loading="lazy">
+      <figcaption>Wing internal structure.</figcaption>
+    </figure>
+    <figure class="fig">
+      <img src="img/cessna-fuselage-exploded.jpg" alt="Exploded CAD view of the fuselage showing the nose, middle and tail sections and the canopy." width="1037" height="610" loading="lazy">
+      <figcaption>Fuselage sections, exploded.</figcaption>
+    </figure>
+  </div>
+
+  <h3>Print settings</h3>
+  <p class="plain">White, unpigmented 1.75 mm PETG for all printed parts, chosen for impact resistance and ductility over PLA.</p>
+  <table class="data">
+    <thead><tr><th scope="col">Region</th><th scope="col">Strategy</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">Most parts</th><td>Two-perimeter walls</td></tr>
+      <tr><th scope="row">Ribs, formers, local reinforcement</th><td>15% infill</td></tr>
+      <tr><th scope="row">Tail surfaces</th><td>About 4 to 5% infill</td></tr>
+      <tr><th scope="row">Supports</th><td>Manually placed tree supports at critical overhangs only</td></tr>
+    </tbody>
+  </table>
   <figure class="fig">
-    <img src="img/cessna-iso.jpg" alt="Isometric CAD view of the Cessna 172 model: high wing with a strut on each side, tricycle landing gear and a two-blade propeller." width="849" height="538" loading="lazy">
-    <figcaption>Isometric view.</figcaption>
-  </figure>
-  <figure class="fig">
-    <img src="img/cessna-side.jpg" alt="Side CAD view of the Cessna 172 model, nose to the left, showing the cabin, fin and tailplane." width="1083" height="595" loading="lazy">
-    <figcaption>Side view.</figcaption>
-  </figure>
-  <figure class="fig">
-    <img src="img/cessna-top.jpg" alt="Top CAD view of the Cessna 172 model showing the straight wing, fuselage and tailplane." width="761" height="770" loading="lazy">
-    <figcaption>Top view.</figcaption>
-  </figure>
-  <figure class="fig">
-    <img src="img/cessna-front.jpg" alt="Front CAD view of the Cessna 172 model showing the wing, wing struts, propeller and landing gear." width="1036" height="419" loading="lazy">
-    <figcaption>Front view.</figcaption>
+    <img src="img/cessna-print-wing.jpg" alt="The inboard wing section printing on a desktop FDM printer, standing in the enclosure." width="1166" height="772" loading="lazy">
+    <figcaption>Wing section on the printer.</figcaption>
   </figure>
 </section>
-</main>
+
+<section class="wrap" aria-labelledby="h-parts">
+  <h2 id="h-parts">Components and electronics</h2>
+  <table class="data">
+    <thead><tr><th scope="col">Component</th><th scope="col">Part</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">Motor</th><td>DYS G-Power 3548, 900 KV</td></tr>
+      <tr><th scope="row">Propeller</th><td>GEMFAN D11&times;5.5 in, nylon</td></tr>
+      <tr><th scope="row">ESC</th><td>Skywalker V2, 60 A</td></tr>
+      <tr><th scope="row">Battery</th><td>HRB 4S 3300 mAh LiPo</td></tr>
+      <tr><th scope="row">Servos</th><td>Emax ES08MAII on the control surfaces; TowerPro MG90S metal-gear for nose-wheel steering</td></tr>
+      <tr><th scope="row">Receiver</th><td>FlySky FS-iA10B</td></tr>
+      <tr><th scope="row">Flight controller</th><td>ZMR NX4 Pro, for stabilisation and telemetry</td></tr>
+      <tr><th scope="row">Structure and hardware</th><td>Carbon-fibre spar tubes, &Oslash;3 mm spring-steel landing-gear wire, Araldite two-part epoxy, M3 and M4 bolts, PU tyres &Oslash;63 mm and &Oslash;51 mm</td></tr>
+    </tbody>
+  </table>
+  <h3>Radio setup</h3>
+  <p class="plain">Ten channels. The flaps have three positions (retracted, take-off, landing), with left and right servos mixed in the receiver. To reduce the pitch sensitivity seen in testing, aileron, elevator and rudder run at 75% exponential. Nose-wheel steering is mixed from the rudder and limited to 70% of it. A rate switch selects low or high rates in the flight controller, and separate switches cut the throttle and select ESC reverse.</p>
+</section>
+
+<section class="wrap" aria-labelledby="h-build">
+  <h2 id="h-build">Assembly</h2>
+  <p class="plain">The motor sits on a 5 mm plywood plate that isolates the printed nose from vibration. The tail surfaces were epoxied on, and all internal systems were installed and tested before the three fuselage sections were epoxied together. The wing was fitted with its servos, tested for deflection and symmetry, and bolted on so it can come off for transport. The landing gear is Ø3 mm spring steel with soldered copper-wire joints. Centre of gravity was checked by hanging the finished aircraft from a beam clamped to a desk, then adjusted against the position from the aerodynamic analysis.</p>
+    <figure class="fig">
+      <img src="img/cessna-painted.jpg" alt="The painted aircraft in white and blue on a cutting mat." width="867" height="488" loading="lazy">
+      <figcaption>After painting.</figcaption>
+    </figure>
+</section>
+
+<section class="wrap" aria-labelledby="h-first">
+  <h2 id="h-first">First flight and failure analysis</h2>
+  <p class="plain">The final take-off attempt showed thrust well above what take-off needed, a short ground roll before lift-off. Straight after lift-off the aircraft pitched up hard, which the report attributes to high pitch control sensitivity. The pilot's corrections overshot, producing growing pitch oscillations coupled with an unintended left bank. The aircraft entered a descending spiral and hit the sand at low altitude.</p>
+    <figure class="fig narrow">
+      <img src="img/cessna-airborne.jpg" alt="The first airframe just after lift-off on the first flight, small against a hazy sky." width="560" height="360" loading="lazy">
+      <figcaption>Airborne.</figcaption>
+    </figure>
+
+  <h3>What the wreck showed</h3>
+  <ul class="facts">
+    <li><strong>Cause:</strong> control tuning and handling, not a fundamental aerodynamic or structural fault. Take-off performance and propulsion were adequate.</li>
+    <li><strong>Wing:</strong> minor cracking along layer boundaries and a small piece lost where it struck first. The internal structure stayed intact, and the carbon spar tubes showed no fracture, buckling or permanent deformation.</li>
+    <li><strong>Fuselage:</strong> nose destroyed, and the tail failed in bending and torsion. The centre section and landing-gear junction were largely unaffected, which suggests the added ribs, formers and local reinforcement there worked.</li>
+    <li><strong>Electronics:</strong> motor, ESC, servos, battery and flight controller survived. The receiver was the exception, with a broken antenna.</li>
+    <li><strong>Takeaway:</strong> the shell acted as a sacrificial structure. The nose and tail are where targeted reinforcement or energy-absorbing features would help.</li>
+  </ul>
+    <figure class="fig">
+      <img src="img/cessna-damage-fuselage.jpg" alt="The fuselage with the nose destroyed and the central section and landing gear intact." width="975" height="549" loading="lazy">
+      <figcaption>Fuselage.</figcaption>
+    </figure>
+</section>
+
+<section class="wrap" aria-labelledby="h-rebuild">
+  <h2 id="h-rebuild">Rebuild and second flight</h2>
+  <p class="plain">After the first crash the aircraft was reprinted with reduced control sensitivity, retuned rates and refined control-surface deflections. The second flight handled better than the first, but the aircraft had trim problems and the battery ran out unexpectedly, which ended in a second crash. The rebuilt airframe uses spiral-vase PETG wings and a three-piece fuselage, and its short endurance traced back to high structural weight.</p>
+  <div class="video-embed">
+    <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7433844352944283648?compact=1" title="Flight video, embedded from LinkedIn" loading="lazy" allowfullscreen></iframe>
+  </div>
+  <p class="plain video-note">Video from LinkedIn. <a href="https://www.linkedin.com/feed/update/urn:li:ugcPost:7433844352944283648/" target="_blank" rel="noopener noreferrer">Open it on LinkedIn</a> if it does not load.</p>
+  <p class="plain">Further work in the report: snap-fit and self-aligning features to cut adhesive joints, and wiring channels, servo mounts and avionics bays printed into the structure.</p>
+</section></main>
 
 <footer class="wrap site-footer">
   <p><a href="index.html">Mohammed Armaan</a> · © 2026</p>
@@ -112,6 +220,6 @@
     });
   }, 10000);
 </script>
-<script type="module" src="js/viewer-cessna.js?v=15"></script>
+<script type="module" src="js/viewer-cessna.js?v=17"></script>
 </body>
 </html>
