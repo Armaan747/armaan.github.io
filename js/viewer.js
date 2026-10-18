@@ -93,9 +93,13 @@ function setExtension(mm) {
   requestRender();
 }
 
+let lastW = 0, lastH = 0;
 function resize() {
-  const w = host.clientWidth, h = host.clientHeight;
+  const r = host.getBoundingClientRect();
+  const w = Math.round(r.width), h = Math.round(r.height);
   if (!w || !h) return;
+  if (Math.abs(w - lastW) < 2 && Math.abs(h - lastH) < 2) return;   // ignore feedback / tiny changes
+  lastW = w; lastH = h;
   renderer.setSize(w, h, false);
   camera.aspect = w / h;
   camera.updateProjectionMatrix();
@@ -103,6 +107,9 @@ function resize() {
 }
 
 async function init() {
+  // Belt and braces: keep the canvas out of the page flow even if CSS fails to load.
+  host.style.position = 'relative';
+  canvas.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:none';
   renderer = new THREE.WebGLRenderer({ canvas, antialias: true, powerPreference: 'low-power' });
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
 
