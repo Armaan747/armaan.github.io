@@ -227,3 +227,40 @@ html.viewer-full { overflow: hidden; }
 .viewer-wrap-full > .viewer { flex: 1 1 auto; min-height: 240px; aspect-ratio: auto; }
 .viewer-wrap-full > :not(.viewer):not(.viewer-ui) { display: none; }
 .viewer-wrap-full > .viewer-ui { margin-top: 0; flex: none; }
+
+/* ---------- drafting touches (home page) ---------- */
+.dr-defs { position: absolute; width: 0; height: 0; overflow: hidden; }
+.drawing { padding-top: 8px; padding-bottom: 8px; }
+.dr { display: block; width: 100%; height: auto; }
+.dr-top { display: none; }
+.dr-out { fill: var(--bg); stroke: var(--text); stroke-width: 1.4; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+.dr-crease { fill: none; stroke: var(--muted); stroke-width: 0.9; vector-effect: non-scaling-stroke; }
+.dr-ext { fill: none; stroke: var(--accent); stroke-width: 1.3; stroke-dasharray: 5 4; vector-effect: non-scaling-stroke; }
+.dr-dim { stroke: var(--muted); stroke-width: 1; vector-effect: non-scaling-stroke; }
+.dr-center { stroke: var(--muted); stroke-width: 0.9; stroke-dasharray: 12 3 2 3; vector-effect: non-scaling-stroke; }
+.dr-txt, .dr-lbl { fill: var(--muted); font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; font-size: 66px; }
+.dr-lbl { letter-spacing: 0.12em; font-size: 58px; }
+@media (max-width: 560px) {
+  .dr-wide { display: none; }
+  .dr-top { display: block; }
+  .dr-txt { font-size: 70px; }
+  .dr-lbl { font-size: 62px; }
+}
+
+.stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin: 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.stats > div { display: flex; flex-direction: column-reverse; justify-content: flex-end; padding: 14px 16px 14px 0; }
+.stats > div + div { padding-left: 16px; border-left: 1px solid var(--line); }
+.stats dd { margin: 0; font-size: 1.6rem; font-weight: 650; line-height: 1.2; font-variant-numeric: tabular-nums; }
+.stats dt { margin-top: 4px; color: var(--muted); font-size: 0.82rem; line-height: 1.35; }
+@media (max-width: 560px) {
+  .stats { grid-template-columns: 1fr 1fr; }
+  .stats > div:nth-child(3) { border-left: 0; padding-left: 0; }
+  .stats > div:nth-child(n+3) { border-top: 1px solid var(--line); }
+}
+
+.home main { counter-reset: sec; }
+.home section.wrap > h2[id]::before {
+  counter-increment: sec; content: counter(sec, decimal-leading-zero); margin-right: 12px; color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+.item.featured .f-head .meta { padding-left: 10px; border-left: 2px solid var(--accent); }
