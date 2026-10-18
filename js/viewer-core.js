@@ -85,9 +85,12 @@ export function createStage({ host, canvas, target, fit, stencil = false, views 
     return Math.max(w / (k * aspect), h / k) * 1.08;
   }
 
+  let viewName = 'iso', fitRef = 0;
   stage.setView = function (name) {
-    const dir = (viewDirs[name] || viewDirs.iso).clone().normalize();
-    camera.position.copy(stage.target).addScaledVector(dir, fitDistance(viewDirs[name] ? name : 'iso'));
+    viewName = viewDirs[name] ? name : 'iso';
+    const dir = viewDirs[viewName].clone().normalize();
+    fitRef = fitDistance(viewName);
+    camera.position.copy(stage.target).addScaledVector(dir, fitRef);
     controls.target.copy(stage.target);
     camera.lookAt(stage.target);
     controls.update();
@@ -104,6 +107,13 @@ export function createStage({ host, canvas, target, fit, stencil = false, views 
     renderer.setSize(w, h, false);
     camera.aspect = w / h;
     camera.updateProjectionMatrix();
+    const f = fitDistance(viewName);
+    if (fitRef) {
+      const offset = camera.position.clone().sub(controls.target).multiplyScalar(f / fitRef);
+      camera.position.copy(controls.target).add(offset);
+      controls.update();
+    }
+    fitRef = f;
     stage.requestRender();
   }
 
@@ -117,7 +127,46 @@ export function createStage({ host, canvas, target, fit, stencil = false, views 
     stage.setView('iso');
   };
 
+  addFullscreen(host);
   return stage;
+}
+
+// Full screen for the viewer and its controls (host's parent). Uses the Fullscreen API where it
+// exists and a fixed overlay otherwise (iPhone Safari), so it works everywhere. Added to every
+// stage automatically, so any new viewer gets it.
+function addFullscreen(host) {
+  const wrap = host.parentElement;
+  const btn = document.createElement('button');
+  btn.type = 'button';
+  btn.className = 'viewer-fs-btn';
+  btn.style.cssText = 'position:absolute;top:8px;right:8px;z-index:2';
+  host.appendChild(btn);
+
+  let active = false;
+  function paint() {
+    btn.textContent = active ? 'Exit full screen' : 'Full screen';
+    btn.setAttribute('aria-label', btn.textContent);
+  }
+  function enter() {
+    active = true;
+    wrap.classList.add('viewer-wrap-full');
+    document.documentElement.classList.add('viewer-full');
+    if (wrap.requestFullscreen) wrap.requestFullscreen().catch(() => {});   // overlay still works if refused
+    paint();
+  }
+  function exit() {
+    active = false;
+    wrap.classList.remove('viewer-wrap-full');
+    document.documentElement.classList.remove('viewer-full');
+    if (document.fullscreenElement === wrap) document.exitFullscreen().catch(() => {});
+    paint();
+  }
+  btn.addEventListener('click', () => (active ? exit() : enter()));
+  document.addEventListener('keydown', e => { if (active && e.key === 'Escape') exit(); });
+  document.addEventListener('fullscreenchange', () => {
+    if (active && document.fullscreenElement !== wrap) exit();   // user left with the browser's own control
+  });
+  paint();
 }
 
 // Wires the camera view buttons inside root.

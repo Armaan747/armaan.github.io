@@ -209,3 +209,21 @@ table.data tbody th { font-weight: 500; color: var(--muted); }
   .hero .portrait { grid-column: 1; width: 112px; }
   .hero .intro { grid-row: 2; }
 }
+
+/* ---------- viewer full screen (button is added by js/viewer-core.js) ---------- */
+.viewer-fs-btn {
+  font: inherit; font-size: 0.85rem; color: var(--text); background: var(--bg);
+  border: 1px solid var(--line); border-radius: 6px; padding: 4px 10px; cursor: pointer;
+}
+.viewer-fs-btn:hover { border-color: var(--accent); }
+.viewer-fs-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+html.viewer-full { overflow: hidden; }
+/* !important beats the layout rules of whichever page the viewer sits in. */
+.viewer-wrap-full {
+  position: fixed; inset: 0; z-index: 100; display: flex; flex-direction: column; gap: 12px;
+  margin: 0 !important; padding: 12px !important; max-width: none !important;
+  background: var(--bg); overflow: auto;
+}
+.viewer-wrap-full > .viewer { flex: 1 1 auto; min-height: 240px; aspect-ratio: auto; }
+.viewer-wrap-full > :not(.viewer):not(.viewer-ui) { display: none; }
+.viewer-wrap-full > .viewer-ui { margin-top: 0; flex: none; }

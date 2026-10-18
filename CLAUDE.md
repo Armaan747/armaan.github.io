@@ -28,12 +28,13 @@ It is a project site, so the base path is `/armaan.github.io/`. Always use **rel
 - `.nojekyll` must stay.
 
 ## Cache busting
-GitHub Pages caches CSS and JS for roughly 10 minutes. When `styles.css` or `js/viewer.js` changes, bump the `?v=N` query on every page that links them (currently `?v=10`).
+GitHub Pages caches CSS and JS for roughly 10 minutes. When `styles.css` or `js/viewer.js` changes, bump the `?v=N` query on every page that links them (currently `?v=11`).
 
 ## 3D viewer rules (a past bug cost a day, do not regress it)
 - The viewer container needs `position:relative; aspect-ratio; overflow:hidden`. The canvas is `position:absolute; inset:0; width:100%; height:100%`. Never let the canvas sit in the normal flow, because a ResizeObserver feedback loop makes the page grow forever.
 - The critical viewer CSS is duplicated in an inline `<style>` in each project page head so it works even with a stale cached stylesheet. Keep it.
 - `resize()` ignores changes under 2 px. Keep that guard.
+- Every viewer has a Full screen button, added automatically by `createStage()` in `js/viewer-core.js` (Fullscreen API with a fixed-overlay fallback for iPhone). New viewers must be built on `createStage()`, and the markup must keep the `.viewer` host and its `.viewer-ui` controls as siblings in one parent element, because that parent is what goes full screen.
 - Render on demand (`requestAnimationFrame` only after a control change). No continuous loop, no auto-rotate.
 - Model units are mm. +Z is the nose, +Y is up, the wing runs along X. Normals are creased at 35 degrees with edge lines.
 - Export STLs from SolidWorks as multibody parts with "Do not translate output data to positive space" so the bodies share an origin. Moving parts are a separate STL so JS can translate them.

@@ -1,4 +1,4 @@
-import { THREE, createStage, bindViewButtons } from './viewer-core.js?v=10';
+import { THREE, createStage, bindViewButtons } from './viewer-core.js?v=11';
 import { STLLoader } from 'three/addons/STLLoader.js';
 
 // RC Cessna 172, nose at +Z, up +Y, aircraft left wing at +X.
