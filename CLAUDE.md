@@ -7,7 +7,7 @@ It is a project site, so the base path is `/armaan.github.io/`. Always use **rel
 ## Principles
 - Clean and minimal. The goal is to look like someone who means business and gets down to work.
 - No unnecessary animation, no gradients, no neon or RGB colours, no scroll effects, no carousels, no emoji.
-- Light and dark themes follow the device (`prefers-color-scheme`). There is no manual toggle. Never blind a recruiter with a white flash.
+- Light and dark themes follow the device (`prefers-color-scheme`) by default. A header button (`js/theme.js`) lets the visitor override it; the choice is saved in localStorage and applied via `data-theme` on `<html>` before first paint. Never blind a recruiter with a white flash.
 - Plain HTML, CSS and JS. No build step, no framework, no npm dependencies on the site. Keep it that way.
 - Accessible: semantic headings, alt text on every meaningful image, visible focus states, labels on controls, works with keyboard.
 - Mobile first. Nothing may scroll sideways at 390 px wide.
@@ -16,8 +16,9 @@ It is a project site, so the base path is `/armaan.github.io/`. Always use **rel
 ## Layout
 - `index.html`: single-page home (Projects, Experience, Publications, Skills, Contact). The flagship project card has a thumbnail.
 - `variable-stability-uav.html`: project page with the 3D viewer, CFD table, figures and build notes. Each new project gets its own page, copied from this one.
-- `styles.css`: all styling, using CSS variables (`--bg --text --muted --line --accent --surface`). The dark overrides sit in one `@media (prefers-color-scheme: dark)` block.
+- `styles.css`: all styling, using CSS variables (`--bg --text --muted --line --accent --surface`). The dark overrides sit in a `@media (prefers-color-scheme: dark)` block plus a matching `:root[data-theme="dark"]` rule.
 - `js/viewer.js`: three.js viewer.
+- `js/theme.js`: light/dark toggle, loaded in the head of every page. The dark variables in `styles.css` exist twice (media query and `[data-theme="dark"]`); keep them identical. The viewer listens for the `themechange` event.
 - `vendor/`: three.js r170 plus STLLoader, OrbitControls and BufferGeometryUtils, vendored locally. Do not switch to a CDN. Wire it with the importmap in the page head:
   `{"imports":{"three":"./vendor/three.module.min.js","three/addons/":"./vendor/"}}`
 - `models/`: STL exports from SolidWorks.
@@ -26,7 +27,7 @@ It is a project site, so the base path is `/armaan.github.io/`. Always use **rel
 - `.nojekyll` must stay.
 
 ## Cache busting
-GitHub Pages caches CSS and JS for roughly 10 minutes. When `styles.css` or `js/viewer.js` changes, bump the `?v=N` query on every page that links them (currently `?v=4`).
+GitHub Pages caches CSS and JS for roughly 10 minutes. When `styles.css` or `js/viewer.js` changes, bump the `?v=N` query on every page that links them (currently `?v=6`).
 
 ## 3D viewer rules (a past bug cost a day, do not regress it)
 - The viewer container needs `position:relative; aspect-ratio; overflow:hidden`. The canvas is `position:absolute; inset:0; width:100%; height:100%`. Never let the canvas sit in the normal flow, because a ResizeObserver feedback loop makes the page grow forever.

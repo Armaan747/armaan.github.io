@@ -36,7 +36,8 @@ function requestRender() {
 }
 
 function applyTheme() {
-  const t = darkQuery.matches ? THEMES.dark : THEMES.light;
+  const forced = document.documentElement.dataset.theme;
+  const t = (forced ? forced === 'dark' : darkQuery.matches) ? THEMES.dark : THEMES.light;
   const surface = getComputedStyle(document.documentElement).getPropertyValue('--surface').trim() || '#f6f7f8';
   scene.background = new THREE.Color(surface);
   fixedMat.color.setHex(t.fixed);
@@ -146,6 +147,7 @@ async function init() {
 
   applyTheme();
   darkQuery.addEventListener('change', applyTheme);
+  document.addEventListener('themechange', applyTheme);
   new ResizeObserver(resize).observe(host);
   resize();
   setView('iso');

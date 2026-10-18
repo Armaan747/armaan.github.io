@@ -8,8 +8,9 @@
   --surface: #f6f7f8;
   color-scheme: light;
 }
+/* Dark follows the device unless js/theme.js has set data-theme. Keep both blocks identical. */
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
     --bg: #131517;
     --text: #e4e6e8;
     --muted: #9aa1a8;
@@ -19,6 +20,16 @@
     --surface: #1a1d20;
     color-scheme: dark;
   }
+}
+:root[data-theme="dark"] {
+  --bg: #131517;
+  --text: #e4e6e8;
+  --muted: #9aa1a8;
+  --line: #2a2e32;
+  --accent: #8db0e3;
+  --accent-text: #0f1215;
+  --surface: #1a1d20;
+  color-scheme: dark;
 }
 
 * { box-sizing: border-box; }
@@ -46,6 +57,18 @@ a:focus-visible, .btn:focus-visible { outline: 2px solid var(--accent); outline-
 nav { display: flex; flex-wrap: wrap; gap: 4px 18px; font-size: 0.93rem; }
 nav a { color: var(--muted); text-decoration: none; }
 nav a:hover { color: var(--text); }
+.theme-btn {
+  font: inherit; font-size: 0.93rem; color: var(--muted); background: transparent;
+  border: 1px solid var(--line); border-radius: 6px; padding: 4px 12px; cursor: pointer;
+}
+.theme-btn:hover { color: var(--text); border-color: var(--accent); }
+.theme-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.theme-btn[hidden] { display: none; }
+@media (max-width: 560px) {
+  .bar .brand { order: 1; }
+  .bar .theme-btn { order: 2; }
+  .bar nav { order: 3; flex-basis: 100%; }
+}
 
 .hero { padding-top: 64px; padding-bottom: 40px; }
 .eyebrow { margin: 0 0 6px; color: var(--muted); font-size: 0.9rem; letter-spacing: 0.04em; text-transform: uppercase; }
