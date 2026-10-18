@@ -5,9 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light dark">
 <title>RC Cessna 172 – Mohammed Armaan</title>
-<meta name="description" content="1:8 scale 3D-printed RC Cessna 172: interactive 3D model, aerodynamic analysis, structure, build, first-flight failure analysis and the rebuild.">
+<meta name="description" content="1:8 scale 3D-printed RC Cessna 172: interactive 3D model, design basis, structure, build, first-flight failure analysis and the rebuild.">
 <meta property="og:title" content="RC Cessna 172, 3D-Printed Flying Model">
-<meta property="og:description" content="1:8 scale 3D-printed RC Cessna 172: design, analysis, build, two flights and what went wrong.">
+<meta property="og:description" content="1:8 scale 3D-printed RC Cessna 172: design, build, two flights and what went wrong.">
 <meta property="og:type" content="article">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23c2410c'/%3E%3Ctext x='16' y='22' font-family='Arial' font-size='15' font-weight='700' fill='white' text-anchor='middle'%3EMA%3C/text%3E%3C/svg%3E">
 <link rel="stylesheet" href="styles.css?v=17">
@@ -93,22 +93,9 @@
       <tr><th scope="row">Wing area</th><td>about 0.32 to 0.34 m&sup2;, estimated from the plan</td></tr>
       <tr><th scope="row">Airfoil</th><td>Clark Y based, slight dihedral</td></tr>
       <tr><th scope="row">Tail sizing</th><td>Horizontal tail about 30% of wing area; vertical tail over 50% of horizontal tail area</td></tr>
-      <tr><th scope="row">Mass used in analysis</th><td>3.5 kg (foamboard reference: about 1.2 kg)</td></tr>
+      <tr><th scope="row">Estimated mass</th><td>3.5 kg (foamboard reference: about 1.2 kg)</td></tr>
     </tbody>
   </table>
-</section>
-
-<section class="wrap" aria-labelledby="h-aero">
-  <h2 id="h-aero">Aerodynamic analysis</h2>
-  <h3>XFLR5</h3>
-  <p class="plain">The Clark Y section was analysed in 2D at 10 m/s, the take-off condition, which gives a Reynolds number of about 150,000, sweeping angle of attack from &minus;5&deg; to 20&deg;. The full aircraft was then modelled with both tail surfaces, a mass of 3.5 kg and the centre of gravity taken from the CAD model, at the same 10 m/s. The pitching moment slope against angle of attack is negative, so the aircraft is statically stable in pitch at that CG. These are simplified low-Reynolds-number models and the report gives no numerical static margin.</p>
-
-  <h3>Full-body CFD</h3>
-  <p class="plain">A steady-state external-flow simulation of the complete airframe at take-off conditions. Flow stays attached over the wing and tail and accelerates smoothly over the nose and cabin. Stagnation and wake regions sit at the nose, landing-gear struts and wheels, and turbulence intensity is highest in the gear wakes and at sharp fuselage transitions. The tail sits in largely undisturbed flow. The fixed landing gear is the main drag penalty. The report presents contours only, with no force coefficients.</p>
-    <figure class="fig">
-      <img src="img/cessna-cfd-velocity.jpg" alt="Velocity contours on a side plane through the aircraft, showing flow accelerating over the nose and cabin and slow wakes behind the landing gear." width="1200" height="671" loading="lazy">
-      <figcaption>Velocity contours.</figcaption>
-    </figure>
 </section>
 
 <section class="wrap" aria-labelledby="h-structure">
@@ -169,7 +156,7 @@
 
 <section class="wrap" aria-labelledby="h-build">
   <h2 id="h-build">Assembly</h2>
-  <p class="plain">The motor sits on a 5 mm plywood plate that isolates the printed nose from vibration. The tail surfaces were epoxied on, and all internal systems were installed and tested before the three fuselage sections were epoxied together. The wing was fitted with its servos, tested for deflection and symmetry, and bolted on so it can come off for transport. The landing gear is Ø3 mm spring steel with soldered copper-wire joints. Centre of gravity was checked by hanging the finished aircraft from a beam clamped to a desk, then adjusted against the position from the aerodynamic analysis.</p>
+  <p class="plain">The motor sits on a 5 mm plywood plate that isolates the printed nose from vibration. The tail surfaces were epoxied on, and all internal systems were installed and tested before the three fuselage sections were epoxied together. The wing was fitted with its servos, tested for deflection and symmetry, and bolted on so it can come off for transport. The landing gear is Ø3 mm spring steel with soldered copper-wire joints. Centre of gravity was checked by hanging the finished aircraft from a beam clamped to a desk, then adjusted where needed to meet the design's stability requirements.</p>
     <figure class="fig">
       <img src="img/cessna-painted.jpg" alt="The painted aircraft in white and blue on a cutting mat." width="867" height="488" loading="lazy">
       <figcaption>After painting.</figcaption>
