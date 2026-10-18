@@ -180,11 +180,22 @@ table.data tbody th { font-weight: 500; color: var(--muted); }
 .fig { margin: 18px 0 0; }
 .fig img { display: block; width: 100%; height: auto; border: 1px solid var(--line); border-radius: 8px; background: #fff; }
 .fig figcaption { margin-top: 8px; color: var(--muted); font-size: 0.9rem; max-width: 72ch; }
-.item.featured { display: grid; grid-template-columns: 220px 1fr; gap: 20px; align-items: start; }
-.item.featured .thumb { display: block; }
-.item.featured .thumb img { display: block; width: 100%; height: auto; border: 1px solid var(--line); border-radius: 8px; }
-.item.featured .body { min-width: 0; }
-@media (max-width: 640px) { .item.featured { grid-template-columns: 1fr; } }
+/* Featured project: text left, live 3D viewer right on wide screens; one column in reading order on phones. */
+.item.featured {
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: 28px; align-items: start;
+  grid-template-areas: "head viewer" "desc viewer" "facts viewer";
+  grid-template-rows: auto auto 1fr;
+}
+.item.featured .f-head { grid-area: head; }
+.item.featured .f-desc { grid-area: desc; }
+.item.featured .f-viewer { grid-area: viewer; min-width: 0; }
+.item.featured .f-facts { grid-area: facts; min-width: 0; }
+.item.featured .f-viewer .viewer { margin-top: 6px; }
+.item.featured .f-viewer .slider-row label { min-width: 0; }
+@media (max-width: 640px) {
+  .item.featured { grid-template-columns: minmax(0, 1fr); grid-template-areas: "head" "desc" "viewer" "facts"; grid-template-rows: auto; }
+  .item.featured .f-viewer { margin-top: 16px; }
+}
 
 .hero { display: grid; grid-template-columns: 1fr 160px; gap: 32px; align-items: start; }
 .hero .portrait { grid-column: 2; grid-row: 1; width: 160px; height: auto; border: 1px solid var(--line); border-radius: 8px; background: #fff; }

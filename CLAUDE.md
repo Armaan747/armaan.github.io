@@ -27,7 +27,7 @@ It is a project site, so the base path is `/armaan.github.io/`. Always use **rel
 - `.nojekyll` must stay.
 
 ## Cache busting
-GitHub Pages caches CSS and JS for roughly 10 minutes. When `styles.css` or `js/viewer.js` changes, bump the `?v=N` query on every page that links them (currently `?v=6`).
+GitHub Pages caches CSS and JS for roughly 10 minutes. When `styles.css` or `js/viewer.js` changes, bump the `?v=N` query on every page that links them (currently `?v=8`).
 
 ## 3D viewer rules (a past bug cost a day, do not regress it)
 - The viewer container needs `position:relative; aspect-ratio; overflow:hidden`. The canvas is `position:absolute; inset:0; width:100%; height:100%`. Never let the canvas sit in the normal flow, because a ResizeObserver feedback loop makes the page grow forever.
@@ -45,7 +45,7 @@ GitHub Pages caches CSS and JS for roughly 10 minutes. When `styles.css` or `js/
 - FEA (SolidWorks, 3g): wood spars 20x20 mm, FOS 3.69, tip deflection 14.85 mm. Carbon boom FOS 21.7, 4.99 mm.
 - CG shift 6.16 mm. Tail group 260 g, battery 400 g. ESP32 with BTS7960 drivers. CoreWing F405-Wing V2 on ArduPlane. 25 Hz logger.
 - Status: ground-tested only (taxi up to 5 m/s). Flights are pending GCAA airspace clearance. Never claim it has flown.
-- Unresolved: whether the CFD sweep was 18 design points (paper) or 36 (report). Do not state a count until the author confirms.
+- CFD sweep: 18 runs, confirmed by the author (matches the paper; supersedes the report's 36).
 - If the report and the paper disagree, use the paper and flag the difference.
 
 ## Content rules
