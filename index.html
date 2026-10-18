@@ -155,12 +155,6 @@
     </div>
   </article>
 
-  <article class="item">
-    <h3>Hybrid-Power Cloud-Seeding UAV <span class="tag">Concept</span></h3>
-    <p class="meta">2.4 m span fixed-wing</p>
-    <p>Led preliminary sizing and concept development for UAE weather conditions. Proposed a hybrid propulsion architecture (IC engine plus dual electric) and began prototype fabrication in carbon fibre and aluminium, with 3D-printed wing panels.</p>
-  </article>
-
   <article class="item featured">
     <div class="f-head">
       <h3><a class="plainlink" href="rover.html">Lunar Rover Prototype</a> <span class="tag">Team project</span></h3>
@@ -173,6 +167,37 @@
     <div class="f-facts">
       <p class="more"><a href="rover.html">Design, printing, components and field tests &rarr;</a></p>
     </div>
+  </article>
+  <article class="item featured">
+    <div class="f-head">
+      <h3><a class="plainlink" href="lander.html">PlanetX CubeSat Lander</a> <span class="tag">Team project</span></h3>
+      <dl class="plate"><div><dt>Payload</dt><dd>1U, 500 g</dd></div><div><dt>Material</dt><dd>PETG</dd></div><div><dt>Result</dt><dd>2nd place</dd></div></dl>
+    </div>
+    <p class="f-desc">Passive 3D-printed lander that protects a 1U CubeSat in drop tests using springs, legs and a roll cage, built in a team of four for the PlanetX Lander Challenge at Dubai Airshow 2025. I did all the CAD, the rapid prototyping and the design for additive manufacturing. Dropped from up to 2 m with no structural failure, over more than 20 tests.</p>
+    <div class="f-viewer">
+      <div id="lander-viewer" class="viewer" role="group" aria-label="Interactive 3D model of the lander">
+        <canvas id="lander-canvas" tabindex="0" aria-label="3D view. Drag to rotate, scroll to zoom, arrow keys to pan."></canvas>
+        <p id="lander-status" class="viewer-status">Loading 3D model…</p>
+      </div>
+      <div class="viewer-ui">
+        <div class="view-btns" role="group" aria-label="Camera views">
+          <button type="button" data-view="iso">Isometric</button>
+          <button type="button" data-view="top">Top</button>
+          <button type="button" data-view="side">Side</button>
+          <button type="button" data-view="front">Front</button>
+        </div>
+      </div>
+      <p class="hint">Drag to rotate, scroll or pinch to zoom. The final version in CAD, with a dummy cube in place of the CubeSat.</p>
+      <noscript><p class="hint">The interactive model needs JavaScript.</p></noscript>
+    </div>
+    <div class="f-facts">
+      <p class="more"><a href="lander.html">Design iterations, prototyping and drop tests &rarr;</a></p>
+    </div>
+  </article>
+  <article class="item">
+    <h3>Hybrid-Power Cloud-Seeding UAV <span class="tag">Concept</span></h3>
+    <p class="meta">2.4 m span fixed-wing</p>
+    <p>Led preliminary sizing and concept development for UAE weather conditions. Proposed a hybrid propulsion architecture (IC engine plus dual electric) and began prototype fabrication in carbon fibre and aluminium, with 3D-printed wing panels.</p>
   </article>
 </section>
 
@@ -225,7 +250,7 @@
   <article class="item">
     <h3>2nd Place, PlanetX Lander Challenge, Dubai Airshow 2025</h3>
     <p class="meta">UAE Space Agency · Nov 2025</p>
-    <p>The challenge was to design, fabricate and test a CubeSat lander that survives a 2 m Earth-gravity drop test. My role was rapid prototyping: CAD design, motion simulation and 3D-printed fabrication. We ran more than 20 tests to gather qualitative inputs for optimising the design.</p>
+    <p>The challenge was to design, fabricate and test a CubeSat lander that survives a 2 m Earth-gravity drop test. My role was rapid prototyping: CAD design, motion simulation and 3D-printed fabrication. We ran more than 20 tests to gather qualitative inputs for optimising the design. <a href="lander.html">Project page</a>.</p>
     <figure class="fig narrow"><img src="img/award-planetx.jpg" alt="Six team members and an official standing in front of a screen reading Lander Challenge Awarding Ceremony, holding a 2nd Place Winner certificate and the lander." width="800" height="450" loading="lazy"><figcaption>PlanetX Lander Challenge awarding ceremony.</figcaption></figure>
   </article>
   <article class="item">
@@ -291,5 +316,6 @@
 <script src="js/contact.js?v=18" defer></script>
 <script type="module" src="js/viewer.js?v=18"></script>
 <script type="module" src="js/viewer-cessna.js?v=18"></script>
+<script type="module" src="js/viewer-lander.js?v=18"></script>
 </body>
 </html>

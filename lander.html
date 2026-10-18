@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>PlanetX CubeSat Lander – Mohammed Armaan</title>
+<meta name="description" content="Passive 3D-printed PETG lander that protects a 1U, 500 g CubeSat in drop tests: interactive 3D model, three design iterations, rapid prototyping and test results. 2nd place, PlanetX Lander Challenge, Dubai Airshow 2025.">
+<meta property="og:title" content="PlanetX CubeSat Lander">
+<meta property="og:description" content="Passive spring-and-leg lander, 3D-printed in PETG and drop-tested with a 1U CubeSat. 2nd place at the PlanetX Lander Challenge, Dubai Airshow 2025.">
+<meta property="og:type" content="article">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23c2410c'/%3E%3Ctext x='16' y='22' font-family='Arial' font-size='15' font-weight='700' fill='white' text-anchor='middle'%3EMA%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="styles.css?v=18">
+<script src="js/theme.js?v=18"></script>
+<style>
+/* Critical viewer layout, kept inline so the viewer never depends on a cached stylesheet. */
+.viewer{position:relative;width:100%;aspect-ratio:16/10;overflow:hidden}
+.viewer canvas{position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:none}
+.viewer-status{position:absolute;inset:0}
+.viewer-status[hidden]{display:none}
+@media (max-width:560px){.viewer{aspect-ratio:1/1}}
+</style>
+<script type="importmap">
+{ "imports": { "three": "./vendor/three.module.min.js", "three/addons/": "./vendor/" } }
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap bar">
+    <a class="brand" href="index.html">Mohammed Armaan</a>
+    <nav aria-label="Primary">
+      <a href="index.html#projects">Projects</a>
+      <a href="index.html#experience">Experience</a>
+      <a href="index.html#publications">Publications</a>
+      <a href="index.html#awards">Awards</a>
+      <a href="index.html#skills">Skills</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+    <button type="button" class="theme-btn" id="theme-btn" hidden>Dark mode</button>
+  </div>
+</header>
+
+<main id="main">
+<section class="wrap page-head">
+  <p class="crumb"><a href="index.html#projects">&larr; All projects</a></p>
+  <h1 class="h1-sm">PlanetX CubeSat Lander</h1>
+  <dl class="plate page"><div><dt>Payload</dt><dd>1U CubeSat, 500 g</dd></div><div><dt>Material</dt><dd>PETG</dd></div><div><dt>Printed mass</dt><dd>350 g</dd></div><div><dt>Result</dt><dd>2nd place</dd></div></dl>
+  <p class="lead">A passive, 3D-printed lander that protects a 1U, 500 g CubeSat from drop impacts using extension springs, legs and a roll cage, with no electronics. We built it for the PlanetX Lander Challenge at Dubai Airshow 2025 (UAE Space Agency), where it took 2nd place.</p>
+  <p class="plain">A team of four. I did all of the CAD, the rapid prototyping and the design for additive manufacturing (DfAM). The challenge was to design, fabricate and test a CubeSat lander that survives a 2 m Earth-gravity drop test.</p>
+</section>
+
+<section class="wrap" aria-labelledby="h-photos">
+  <h2 id="h-photos">The lander</h2>
+  <div class="fig-grid">
+    <figure class="fig">
+      <img src="img/lander-final.jpg" alt="The grey and black final lander standing on rocks in sand, with a black CubeSat on top held inside an octagonal roll cage." width="686" height="514" loading="lazy">
+      <figcaption>Final version, as used in the competition.</figcaption>
+    </figure>
+    <figure class="fig">
+      <img src="img/lander-tested.jpg" alt="Close view of the last tested version: grey legs with black looped feet and springs, a blue base plate, a black cage and a yellow dummy cube in place of the CubeSat." width="1200" height="900" loading="lazy">
+      <figcaption>Last version tested, with a yellow dummy cube standing in for the CubeSat.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="wrap" aria-labelledby="h-model">
+  <h2 id="h-model">Interactive model</h2>
+
+  <div id="lander-viewer" class="viewer" role="group" aria-label="Interactive 3D model of the lander CAD">
+    <canvas id="lander-canvas" tabindex="0" aria-label="3D view. Drag to rotate, scroll to zoom, arrow keys to pan."></canvas>
+    <p id="lander-status" class="viewer-status">Loading 3D model…</p>
+  </div>
+
+  <div class="viewer-ui">
+    <div class="view-btns" role="group" aria-label="Camera views">
+      <button type="button" data-view="iso">Isometric</button>
+      <button type="button" data-view="top">Top</button>
+      <button type="button" data-view="side">Side</button>
+      <button type="button" data-view="front">Front</button>
+    </div>
+  </div>
+  <p class="hint">Drag to rotate, scroll or pinch to zoom, right-drag or two fingers to pan. This is the CAD model of the final version, with a dummy cube in place of the CubeSat. About 67,000 triangles, 3.4 MB.</p>
+  <noscript><p class="hint">The interactive model needs JavaScript.</p></noscript>
+</section>
+
+<section class="wrap" aria-labelledby="h-iter">
+  <h2 id="h-iter">Three iterations</h2>
+  <p class="plain">Each version was drawn in SolidWorks, printed, assembled and drop-tested, and the failures set the next version.</p>
+  <table class="data">
+    <thead><tr><th scope="col">Version</th><th scope="col">Design</th><th scope="col">Outcome</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">V1</th><td>Piston-style compression system with extension springs.</td><td>Absorbed energy in several directions and reduced shock. Loose tolerances gave chaotic rebound, the small feet were unstable, lateral stabilisation was poor and the structure had weak points. Too complex mechanically.</td></tr>
+      <tr><th scope="row">V2</th><td>Piston removed, extension springs only. Shorter legs for a lower centre of gravity, larger hinged feet to adapt to terrain, and a roll-cage-style shock cage for lateral damping.</td><td>Lower bounce, smoother energy absorption and better landing stability. The foot hinges were weak, the springs overstretched and the frame still deformed in some drops.</td></tr>
+      <tr><th scope="row">Final</th><td>Stiffer extension springs, reinforced higher-friction feet, a thicker and more rigid frame, and an extra roll cage so the CubeSat never touches the ground.</td><td>No tipping and a consistent, controlled landing.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="wrap" aria-labelledby="h-am">
+  <h2 id="h-am">Rapid prototyping and DfAM</h2>
+  <p class="plain">Everything structural was printed in-house, so each failed drop fed straight into a redesign and a new print. New parts were printed for each test.</p>
+  <table class="data">
+    <thead><tr><th scope="col">Item</th><th scope="col">Choice</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">Printer and material</th><td>Elegoo Neptune 4 Max, PETG</td></tr>
+      <tr><th scope="row">Infill and walls</th><td>15% infill, 4 perimeters</td></tr>
+      <tr><th scope="row">Printed parts</th><td>350 g: inner and outer cages, leg frame, legs and reinforced feet</td></tr>
+      <tr><th scope="row">Other parts</th><td>40 g: M4 and M3 bolts, springs and rubber bands</td></tr>
+      <tr><th scope="row">Print time</th><td>13.5 hours in total</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="wrap" aria-labelledby="h-test">
+  <h2 id="h-test">Testing and results</h2>
+  <ul class="facts">
+    <li><strong>Test campaign:</strong> more than 20 drop tests, each with new printed parts.</li>
+    <li><strong>Up to 2 m, onto a ceramic floor:</strong> no structural failure, the CubeSat stayed undamaged, the lander landed upright and settled quickly with minimal rebound.</li>
+    <li><strong>Beyond 2 m:</strong> drops went as high as 6 m. Performance was best within 2.5 m.</li>
+  </ul>
+  <p class="plain">Next steps we listed: composite materials, variable-stiffness dampers and adaptive foot geometry.</p>
+</section>
+</main>
+
+<footer class="wrap site-footer">
+  <p><a href="index.html">Mohammed Armaan</a> · © 2026</p>
+</footer>
+
+<script>
+  // If the module viewer has not started after 10 s, say so plainly.
+  setTimeout(function () {
+    document.querySelectorAll('.viewer-status').forEach(function (s) {
+      if (!s.dataset.ready && !s.dataset.failed) { s.hidden = false; s.textContent = 'The 3D viewer did not start. Your browser may not support WebGL, or the files are still loading.'; }
+    });
+  }, 10000);
+</script>
+<script type="module" src="js/viewer-lander.js?v=18"></script>
+</body>
+</html>
