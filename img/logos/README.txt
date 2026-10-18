@@ -1,0 +1,1 @@
+Python, C++, Raspberry Pi, ANSYS, AutoCAD, Espressif: Simple Icons 16.35.0 (CC0). SOLIDWORKS, CATIA, ArduPilot: Wikimedia Commons. All are trademarks of their owners and are shown only to name the software. Drawn as single-colour masks in styles.css.
