@@ -51,7 +51,7 @@
   <p class="hero-facts">B.Tech Aerospace Engineering, CGPA 9.68 &middot; <span id="loc">Dubai</span></p>
   <script>
     // Show Bengaluru to visitors in an Indian time zone, Dubai to everyone else. No network request, no IP lookup.
-    try { var tz = Intl.DateTimeFormat().resolvedOptions().timeZone; if (tz === "Asia/Kolkata" || tz === "Asia/Calcutta") document.getElementById("loc").textContent = "Bengaluru"; } catch (e) {}
+    var inIndia = false; try { var tz = Intl.DateTimeFormat().resolvedOptions().timeZone; inIndia = tz === "Asia/Kolkata" || tz === "Asia/Calcutta"; } catch (e) {} if (inIndia) document.getElementById("loc").textContent = "Bengaluru";
   </script>
   <p class="actions">
     <a class="btn primary" href="assets/Mohammed_Armaan_CV.pdf">Download CV (PDF)</a>
@@ -295,7 +295,8 @@
 
 <section class="wrap" id="contact" aria-labelledby="h-contact">
   <h2 id="h-contact">Contact</h2>
-  <p>Looking for UAV design roles in the UAE and India, fixed-wing and rotorcraft.</p>
+  <p>Looking for UAV design roles in <span id="loc-contact">the UAE</span>, fixed-wing and rotorcraft.</p>
+  <script>if (inIndia) document.getElementById("loc-contact").textContent = "India";</script>
   <p class="actions">
     <a class="btn primary" href="mailto:m747.armaan@gmail.com">m747.armaan@gmail.com</a>
     <a class="btn" href="https://www.linkedin.com/in/m-armaan" target="_blank" rel="noopener noreferrer">linkedin.com/in/m-armaan</a>
