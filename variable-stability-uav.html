@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Variable-Stability UAV – Mohammed Armaan</title>
+<meta name="description" content="Interactive 3D model and results for a fixed-wing UAV with a telescoping tail boom that changes tail volume coefficient in flight.">
+<meta property="og:title" content="Variable-Stability UAV with Telescoping Tail Boom">
+<meta property="og:description" content="1.8 m fixed-wing UAV: interactive 3D model, CFD and FEA results.">
+<meta property="og:type" content="article">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%232b4c7e'/%3E%3Ctext x='16' y='22' font-family='Arial' font-size='15' font-weight='700' fill='white' text-anchor='middle'%3EMA%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="styles.css">
+<script type="importmap">
+{ "imports": { "three": "./vendor/three.module.min.js", "three/addons/": "./vendor/" } }
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap bar">
+    <a class="brand" href="index.html">Mohammed Armaan</a>
+    <nav aria-label="Primary">
+      <a href="index.html#projects">Projects</a>
+      <a href="index.html#experience">Experience</a>
+      <a href="index.html#publications">Publications</a>
+      <a href="index.html#skills">Skills</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<section class="wrap page-head">
+  <p class="crumb"><a href="index.html#projects">&larr; All projects</a></p>
+  <h1 class="h1-sm">Variable-Stability Fixed-Wing UAV with Telescoping Tail Boom</h1>
+  <p class="meta-line">Team lead · 1.8 m span · 3.6 kg AUW · Presented at ASET 2026</p>
+  <p class="lead">A tail boom that extends and retracts in flight changes the horizontal tail volume coefficient, so the same airframe can favour stability or agility. A battery carriage moves the opposite way to keep the centre of gravity in place.</p>
+</section>
+
+<section class="wrap" aria-labelledby="h-model">
+  <h2 id="h-model">Interactive model</h2>
+
+  <div id="viewer" class="viewer" role="group" aria-label="Interactive 3D model of the UAV">
+    <canvas id="viewer-canvas" tabindex="0" aria-label="3D view. Drag to rotate, scroll to zoom, arrow keys to pan."></canvas>
+    <p id="viewer-status" class="viewer-status">Loading 3D model…</p>
+  </div>
+
+  <div class="viewer-ui">
+    <div class="slider-row">
+      <label for="ext">Tail extension</label>
+      <input id="ext" type="range" min="0" max="200" step="1" value="0">
+      <output id="out-ext" for="ext">0 mm</output>
+    </div>
+    <dl class="readouts">
+      <div><dt>Tail arm</dt><dd id="out-arm">790 mm</dd></div>
+      <div><dt>Tail volume coefficient</dt><dd id="out-vht">0.36</dd></div>
+    </dl>
+    <div class="view-btns" role="group" aria-label="Camera views">
+      <button type="button" data-view="iso">Isometric</button>
+      <button type="button" data-view="top">Top</button>
+      <button type="button" data-view="side">Side</button>
+      <button type="button" data-view="front">Front</button>
+    </div>
+  </div>
+  <p class="hint">Drag to rotate, scroll or pinch to zoom, right-drag or two fingers to pan. The blue-grey parts are the tail group that slides. This is a simplified exterior model; internal structure and mechanisms are not shown. Between the end positions, tail volume coefficient is interpolated linearly across the design range (0.40 at the 100 mm midpoint).</p>
+  <noscript><p class="hint">The interactive model needs JavaScript.</p></noscript>
+</section>
+
+<section class="wrap" aria-labelledby="h-results">
+  <h2 id="h-results">CFD results</h2>
+  <p class="plain">3D CFD in ANSYS Fluent (k-omega SST, about 3.6M cells, 18-point sweep). The fuselage forebody was re-lofted after early runs showed a destabilising positive pitching-moment slope. Values below are at 15 m/s.</p>
+  <table class="data">
+    <caption class="sr-only">Retracted versus extended tail, from CFD</caption>
+    <thead><tr><th scope="col"></th><th scope="col">Retracted</th><th scope="col">Extended</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">Tail arm</th><td>790 mm</td><td>990 mm</td></tr>
+      <tr><th scope="row">Tail volume coefficient</th><td>0.36</td><td>0.44</td></tr>
+      <tr><th scope="row">Pitch stiffness dCm/dα</th><td>−0.0031 per deg</td><td>−0.0049 per deg</td></tr>
+      <tr><th scope="row">L/D at 0° angle of attack</th><td>7.61</td><td>8.51</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="wrap" aria-labelledby="h-design">
+  <h2 id="h-design">Design and analysis</h2>
+  <dl class="specs">
+    <dt>Wing</dt><dd>1.80 m span, aspect ratio 6.47, 0.501 m² area, Clark Y section</dd>
+    <dt>Tail travel</dt><dd>200 mm stroke, driven by a 12 V linear actuator through nested carbon-fibre tubes</dd>
+    <dt>CG compensation</dt><dd>A second actuator, controlled by an ESP32, moves the 400 g battery carriage against the 260 g tail group. Modelled CG shift is limited to 6.16 mm over the full stroke.</dd>
+    <dt>FEA, 3g limit load</dt><dd>Wood wing spars (20 × 20 mm): minimum factor of safety 3.69, tip deflection 14.85 mm. Carbon tail boom: minimum factor of safety 21.7, tip deflection 4.99 mm.</dd>
+    <dt>Avionics</dt><dd>CoreWing F405-Wing V2 running ArduPlane, MS4525DO airspeed sensor, 4S 4400 mAh battery</dd>
+  </dl>
+</section>
+
+<section class="wrap" aria-labelledby="h-build">
+  <h2 id="h-build">Build and status</h2>
+  <p class="plain">The wing and tail surfaces are hot-wire-cut XPS foam with two plies of 30 GSM fibreglass, wood spars, 3D-printed PETG mounts and carbon-fibre booms. The airframe has been ground-tested at taxi speeds up to 5 m/s, with the control surfaces and both actuators cycled under propulsion vibration. Flight trials are pending GCAA airspace clearance, and a 25 Hz data logger is configured to measure autopilot pitch workload against tail extension once flights resume.</p>
+  <p class="plain">A copyright application has been filed for the design.</p>
+</section>
+
+<section class="wrap" aria-labelledby="h-paper">
+  <h2 id="h-paper">Paper</h2>
+  <p class="plain">Armaan, M., Patwa, H. K., Prakasan, A. P., Raj, S., Pillai, S. <em>Development of a Telescoping Boom Variable Stability Unmanned Aerial Vehicle.</em> Presented at ASET 2026.</p>
+</section>
+</main>
+
+<footer class="wrap site-footer">
+  <p><a href="index.html">Mohammed Armaan</a> · © 2026</p>
+</footer>
+
+<script>
+  // If the module viewer has not started after 10 s, say so plainly.
+  setTimeout(function () {
+    if (!window.__viewerReady) {
+      var s = document.getElementById('viewer-status');
+      if (s && !s.dataset.failed) { s.hidden = false; s.textContent = 'The 3D viewer did not start. Your browser may not support WebGL, or the files are still loading.'; }
+    }
+  }, 10000);
+</script>
+<script type="module" src="js/viewer.js"></script>
+</body>
+</html>
