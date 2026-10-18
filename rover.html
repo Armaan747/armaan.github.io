@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Lunar Rover Prototype – Mohammed Armaan</title>
+<meta name="description" content="Detailed design and 3D-printed PETG prototype of a six-wheel rocker-bogie lunar rover with a six-axis arm: interactive 3D model, chassis and suspension design, printing strategy, components and desert field tests.">
+<meta property="og:title" content="Lunar Rover Prototype">
+<meta property="og:description" content="Six-wheel rocker-bogie rover with a six-axis arm, designed in detail and 3D-printed in PETG, tested on sand and gravel.">
+<meta property="og:type" content="article">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23c2410c'/%3E%3Ctext x='16' y='22' font-family='Arial' font-size='15' font-weight='700' fill='white' text-anchor='middle'%3EMA%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="styles.css?v=17">
+<script src="js/theme.js?v=17"></script>
+<style>
+/* Critical viewer layout, kept inline so the viewer never depends on a cached stylesheet. */
+.viewer{position:relative;width:100%;aspect-ratio:16/10;overflow:hidden}
+.viewer canvas{position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:none}
+.viewer-status{position:absolute;inset:0}
+.viewer-status[hidden]{display:none}
+@media (max-width:560px){.viewer{aspect-ratio:1/1}}
+</style>
+<script type="importmap">
+{ "imports": { "three": "./vendor/three.module.min.js", "three/addons/": "./vendor/" } }
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap bar">
+    <a class="brand" href="index.html">Mohammed Armaan</a>
+    <nav aria-label="Primary">
+      <a href="index.html#projects">Projects</a>
+      <a href="index.html#experience">Experience</a>
+      <a href="index.html#publications">Publications</a>
+      <a href="index.html#skills">Skills</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+    <button type="button" class="theme-btn" id="theme-btn" hidden>Dark mode</button>
+  </div>
+</header>
+
+<main id="main">
+<section class="wrap page-head">
+  <p class="crumb"><a href="index.html#projects">&larr; All projects</a></p>
+  <h1 class="h1-sm">Lunar Rover Prototype</h1>
+  <dl class="plate page"><div><dt>Wheels</dt><dd>6, rocker-bogie</dd></div><div><dt>Arm</dt><dd>6-axis</dd></div><div><dt>Material</dt><dd>Creality CR-PETG</dd></div><div><dt>CAD size</dt><dd>659 &times; 600 &times; 446 mm</dd></div></dl>
+  <p class="lead">A remote-controlled prototype of a lunar south-pole maintenance rover concept: six-wheel rocker-bogie suspension, a six-axis arm for the dust-removal tool and a 3D-printed PETG chassis. I did the detailed design and the additive manufacturing of the prototype.</p>
+  <p class="plain">The rover concept, analysis and report are Gopika Sankar's B.Tech graduation project at Amity University Dubai (June 2026, supervised by Dr Sarath Raj Nadarajan Syamala). This page covers only my part of the work.</p>
+</section>
+
+<section class="wrap" aria-labelledby="h-field">
+  <h2 id="h-field">In the field</h2>
+  <div class="fig-grid">
+    <figure class="fig">
+      <img src="img/rover-field-gravel.jpg" alt="The blue and black 3D-printed rover on coarse gravel, with its six-axis arm raised." width="1200" height="677" loading="lazy">
+      <figcaption>Field test on coarse gravel.</figcaption>
+    </figure>
+    <figure class="fig">
+      <img src="img/rover-field-sand.jpg" alt="The rover on loose sand, seen from the side, with the arm folded over the chassis plate." width="1200" height="677" loading="lazy">
+      <figcaption>Field test on loose sand.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="wrap" aria-labelledby="h-model">
+  <h2 id="h-model">Interactive model</h2>
+
+  <div id="rover-viewer" class="viewer" role="group" aria-label="Interactive 3D model of the rover prototype CAD">
+    <canvas id="rover-canvas" tabindex="0" aria-label="3D view. Drag to rotate, scroll to zoom, arrow keys to pan."></canvas>
+    <p id="rover-status" class="viewer-status">Loading 3D model…</p>
+  </div>
+
+  <div class="viewer-ui">
+    <div class="view-btns" role="group" aria-label="Camera views">
+      <button type="button" data-view="iso">Isometric</button>
+      <button type="button" data-view="top">Top</button>
+      <button type="button" data-view="side">Side</button>
+      <button type="button" data-view="front">Front</button>
+    </div>
+  </div>
+  <p class="hint">Drag to rotate, scroll or pinch to zoom, right-drag or two fingers to pan. This is a reduced mesh of the prototype's CAD model: about 200,000 triangles, down from about 1 million in the CAD export, so it loads quickly. The file is about 10 MB.</p>
+  <noscript><p class="hint">The interactive model needs JavaScript.</p></noscript>
+</section>
+
+<section class="wrap" aria-labelledby="h-design">
+  <h2 id="h-design">Detailed design</h2>
+  <p class="plain">The concept CAD was reworked into a prototype that can be printed and assembled: parts sized for a large-format FDM printer and designed around PETG.</p>
+  <dl class="specs">
+    <dt>Chassis</dt><dd>Two-piece box girder. The bottom plate has expanded vertical walls and internal ribs, and carries the main rocker-bogie pivot bolts so suspension loads stay out of the electronics bay. The top plate sits flush on it to close the box and holds the electronics on brass heat-set inserts.</dd>
+    <dt>Suspension</dt><dd>A rocker-bogie on each side, joined by a top-mounted differential bar made from threaded rods and fisheye rod ends. The bar lets the chassis pitch against the terrain while keeping all six wheels on the ground. Bearings and bushings sit at every rocker-bogie pivot and arm joint to cut friction and play.</dd>
+    <dt>Steering</dt><dd>Servos mounted directly on the wheel assemblies, with pushrods to the steering knuckles that turn servo rotation into wheel deflection. Four corner wheels steer, and the firmware limits their travel to 45 degrees.</dd>
+    <dt>Arm</dt><dd>Six axes in printed PETG segments: base rotation, shoulder, elbow, wrist pitch, wrist roll and a toolhead sweep, driven from a 16-channel servo driver.</dd>
+    <dt>Fasteners</dt><dd>High-tensile steel nuts and bolts throughout, so parts can be swapped or adjusted in the field.</dd>
+  </dl>
+</section>
+
+<section class="wrap" aria-labelledby="h-am">
+  <h2 id="h-am">Additive manufacturing</h2>
+  <p class="plain">The chassis is large, so the prototype was printed on an Elegoo Neptune 4 Max. Its build volume allowed monolithic chassis parts, which removed weak joints and bonded sub-assemblies.</p>
+  <table class="data">
+    <thead><tr><th scope="col">Item</th><th scope="col">Choice</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">Material</th><td>Creality CR-PETG for all custom structural parts: chassis sections, suspension elements and arm segments</td></tr>
+      <tr><th scope="row">Why PETG</th><td>Chosen over standard PLA to survive high ambient temperatures in outdoor testing, resist fatigue and absorb shock without brittle failure</td></tr>
+      <tr><th scope="row">Infill and walls</th><td>At least 40% gyroid infill and extra walls around load-bearing stress concentrations</td></tr>
+      <tr><th scope="row">Threaded mounts</th><td>Brass heat-set inserts in the printed top plate, for strip-resistant electronics mounting points</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="wrap" aria-labelledby="h-parts">
+  <h2 id="h-parts">Components and layout</h2>
+  <table class="data">
+    <thead><tr><th scope="col">Component</th><th scope="col">Part</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">Drive motors</th><td>Geared DC motors</td></tr>
+      <tr><th scope="row">Motor drivers</th><td>Dual H-bridge boards, BTS7960 / HW-039</td></tr>
+      <tr><th scope="row">Controller</th><td>ESP32</td></tr>
+      <tr><th scope="row">Servo driver</th><td>PCA9685, 16-channel, for the arm and steering servos</td></tr>
+      <tr><th scope="row">Receiver</th><td>FlySky FS-iA10B, 2.4 GHz</td></tr>
+      <tr><th scope="row">Power regulation</th><td>Buck converters, 20 A and 5 A</td></tr>
+      <tr><th scope="row">Wiring</th><td>Silicone power and motor cable, Deans (T-plug) battery connectors, jumper wires for signals</td></tr>
+      <tr><th scope="row">Linkages and joints</th><td>Threaded rods, fisheye rod ends, steering pushrods, bearings and bushings</td></tr>
+    </tbody>
+  </table>
+  <p class="plain">The ESP32 and the servo driver sit at the front of the top plate, and the buck converters at the rear. The bottom plate has an internal bay for wiring, with the battery at the rear. This keeps signal wires short and separates the high-current parts from the logic boards, and the rear battery helps the centre of gravity. The transmitter's mode switch changes the sticks between driving and moving the arm.</p>
+</section>
+
+<section class="wrap" aria-labelledby="h-test">
+  <h2 id="h-test">Testing and results</h2>
+  <h3>Workshop</h3>
+  <p class="plain">On a flat floor first: checking signal binding and delay between the receiver and the ESP32, setting the endpoints of the steering pushrods and arm joints by calibrating the PWM signals, and a power-draw check that the 20 A and 5 A converters held voltage with the drive motors and arm servos stalled at the same time.</p>
+  <h3>Field tests</h3>
+  <p class="plain">Outdoors on unimproved empty lots in Dubai: fine loose sand, coarse uneven gravel and sharp rocks up to 1.5 times the wheel diameter. The rover was driven over continuous obstacle tracks and up loose sand inclines, and steered with its wheels half buried in sand.</p>
+  <ul class="facts">
+    <li><strong>Suspension:</strong> climbed rocky obstacles without lifting the opposite wheels or losing grip. The differential bar shared load between the bogies.</li>
+    <li><strong>Structure:</strong> the PETG box girder showed no cracking or warping despite vibration and impacts off-road.</li>
+    <li><strong>Steering:</strong> the pushrod steering gave positive control and let the rover free itself with its wheels sunk in loose sand.</li>
+    <li><strong>Electronics:</strong> separating logic from power avoided interference and overheating, and the heat-set inserts stayed tight.</li>
+    <li><strong>Limitation:</strong> on very soft sand the rover's weight made the wheels sink and lose traction, and more motor power only made them spin. The report points to the wheel design and mass distribution, and names wheel shape, tread, contact area and lower mass as the next work.</li>
+  </ul>
+  <p class="plain">These were qualitative tests. The report gives no speeds, slope angles or measured loads.</p>
+</section>
+</main>
+
+<footer class="wrap site-footer">
+  <p><a href="index.html">Mohammed Armaan</a> · © 2026</p>
+</footer>
+
+<script>
+  // If the module viewer has not started after 10 s, say so plainly. The rover model is large, so allow longer.
+  setTimeout(function () {
+    document.querySelectorAll('.viewer-status').forEach(function (s) {
+      if (!s.dataset.ready && !s.dataset.failed) { s.hidden = false; s.textContent = 'The 3D viewer did not start. Your browser may not support WebGL, or the files are still loading.'; }
+    });
+  }, 10000);
+</script>
+<script type="module" src="js/viewer-rover.js?v=17"></script>
+</body>
+</html>
