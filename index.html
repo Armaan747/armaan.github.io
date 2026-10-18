@@ -48,7 +48,11 @@
   <div class="intro">
   <h1>UAV Design Engineer</h1>
   <p class="lead">I design and build fixed-wing UAVs: aerodynamic sizing, stability analysis, CFD and FEA, composite and 3D-printed airframes, and ArduPilot flight-controller integration.</p>
-  <p class="hero-facts">B.Tech Aerospace Engineering, CGPA 9.68 &middot; Bengaluru &middot; Available immediately</p>
+  <p class="hero-facts">B.Tech Aerospace Engineering, CGPA 9.68 &middot; <span id="loc">Dubai</span></p>
+  <script>
+    // Show Bengaluru to visitors in an Indian time zone, Dubai to everyone else. No network request, no IP lookup.
+    try { var tz = Intl.DateTimeFormat().resolvedOptions().timeZone; if (tz === "Asia/Kolkata" || tz === "Asia/Calcutta") document.getElementById("loc").textContent = "Bengaluru"; } catch (e) {}
+  </script>
   <p class="actions">
     <a class="btn primary" href="assets/Mohammed_Armaan_CV.pdf">Download CV (PDF)</a>
     <a class="btn" href="mailto:m747.armaan@gmail.com">Email</a>
