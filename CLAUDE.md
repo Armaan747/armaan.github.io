@@ -1,0 +1,62 @@
+# Portfolio site: Mohammed Armaan
+
+Static portfolio for a fresher aiming at UAV design roles in India (fixed-wing and rotorcraft).
+Hosted on GitHub Pages at https://armaan747.github.io/armaan.github.io/ (repo `armaan747/armaan.github.io`).
+It is a project site, so the base path is `/armaan.github.io/`. Always use **relative URLs**, never a leading slash.
+
+## Principles
+- Clean and minimal. The goal is to look like someone who means business and gets down to work.
+- No unnecessary animation, no gradients, no neon or RGB colours, no scroll effects, no carousels, no emoji.
+- Light and dark themes follow the device (`prefers-color-scheme`). There is no manual toggle. Never blind a recruiter with a white flash.
+- Plain HTML, CSS and JS. No build step, no framework, no npm dependencies on the site. Keep it that way.
+- Accessible: semantic headings, alt text on every meaningful image, visible focus states, labels on controls, works with keyboard.
+- Mobile first. Nothing may scroll sideways at 390 px wide.
+- Prefer small, reviewable changes. Show a diff before committing.
+
+## Layout
+- `index.html`: single-page home (Projects, Experience, Publications, Skills, Contact). The flagship project card has a thumbnail.
+- `variable-stability-uav.html`: project page with the 3D viewer, CFD table, figures and build notes. Each new project gets its own page, copied from this one.
+- `styles.css`: all styling, using CSS variables (`--bg --text --muted --line --accent --surface`). The dark overrides sit in one `@media (prefers-color-scheme: dark)` block.
+- `js/viewer.js`: three.js viewer.
+- `vendor/`: three.js r170 plus STLLoader, OrbitControls and BufferGeometryUtils, vendored locally. Do not switch to a CDN. Wire it with the importmap in the page head:
+  `{"imports":{"three":"./vendor/three.module.min.js","three/addons/":"./vendor/"}}`
+- `models/`: STL exports from SolidWorks.
+- `img/`: optimised JPEGs (at most about 1200 px wide).
+- `assets/Mohammed_Armaan_CV.pdf`
+- `.nojekyll` must stay.
+
+## Cache busting
+GitHub Pages caches CSS and JS for roughly 10 minutes. When `styles.css` or `js/viewer.js` changes, bump the `?v=N` query on every page that links them (currently `?v=4`).
+
+## 3D viewer rules (a past bug cost a day, do not regress it)
+- The viewer container needs `position:relative; aspect-ratio; overflow:hidden`. The canvas is `position:absolute; inset:0; width:100%; height:100%`. Never let the canvas sit in the normal flow, because a ResizeObserver feedback loop makes the page grow forever.
+- The critical viewer CSS is duplicated in an inline `<style>` in each project page head so it works even with a stale cached stylesheet. Keep it.
+- `resize()` ignores changes under 2 px. Keep that guard.
+- Render on demand (`requestAnimationFrame` only after a control change). No continuous loop, no auto-rotate.
+- Model units are mm. +Z is the nose, +Y is up, the wing runs along X. Normals are creased at 35 degrees with edge lines.
+- Export STLs from SolidWorks as multibody parts with "Do not translate output data to positive space" so the bodies share an origin. Moving parts are a separate STL so JS can translate them.
+- For a new project: export STL (binary, finer resolution for curved surfaces), add it to `models/`, copy the project page, adjust the FIT table (projected size per view), the camera target and the slider limits.
+
+## Facts for the UAV project (the ASET 2026 paper is the authority)
+- Span 1.8 m, AR 6.47, wing area 0.501 m2, Clark Y, AUW 3.6 kg.
+- Tail arm 790 mm retracted, 990 mm extended (200 mm stroke). Tail volume coefficient 0.36 to 0.44, linear in between.
+- CFD: ANSYS Fluent, k-omega SST, about 3.6M cells. Values at 15 m/s: dCm/dalpha -0.0031 to -0.0049 per deg, L/D at 0 deg 7.61 to 8.51.
+- FEA (SolidWorks, 3g): wood spars 20x20 mm, FOS 3.69, tip deflection 14.85 mm. Carbon boom FOS 21.7, 4.99 mm.
+- CG shift 6.16 mm. Tail group 260 g, battery 400 g. ESP32 with BTS7960 drivers. CoreWing F405-Wing V2 on ArduPlane. 25 Hz logger.
+- Status: ground-tested only (taxi up to 5 m/s). Flights are pending GCAA airspace clearance. Never claim it has flown.
+- Unresolved: whether the CFD sweep was 18 design points (paper) or 36 (report). Do not state a count until the author confirms.
+- If the report and the paper disagree, use the paper and flag the difference.
+
+## Content rules
+- Never invent numbers, dates, awards or claims. If something is unknown, leave it out or ask.
+- No personal phone number on the public site. The email is m747.armaan@gmail.com.
+- No photos with people in them unless asked. Crop or omit.
+- Describe results the way an engineer would: state the value, the conditions and the limitation.
+- Other projects: RC Cessna 172 (1:8, 1.42 m, 3.6 kg AUW, spiral-vase PETG wings, three-piece fuselage, flew briefly, short endurance from high weight), hybrid-power cloud-seeding UAV (2.4 m concept, started prototype), lunar rover (conceptual, 6-DoF arm, 6WD, ESP32). These need STL exports from the author before their pages can have viewers.
+
+## Checks before every commit
+1. Serve locally (`python -m http.server`) and open the page.
+2. Check light mode, dark mode, and a 390 px wide viewport. No horizontal scroll.
+3. Check the browser console for errors and confirm all images load.
+4. Check the 3D viewer loads, orbits, and the slider moves the tail.
+5. Commit with a short imperative message, then push to `main`.
