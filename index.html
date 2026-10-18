@@ -10,8 +10,8 @@
 <meta property="og:description" content="Fixed-wing UAV design, CFD/FEA, composite and 3D-printed airframes.">
 <meta property="og:type" content="website">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%232b4c7e'/%3E%3Ctext x='16' y='22' font-family='Arial' font-size='15' font-weight='700' fill='white' text-anchor='middle'%3EMA%3C/text%3E%3C/svg%3E">
-<link rel="stylesheet" href="styles.css?v=12">
-<script src="js/theme.js?v=12"></script>
+<link rel="stylesheet" href="styles.css?v=11">
+<script src="js/theme.js?v=11"></script>
 <style>
 /* Critical viewer layout, kept inline so the viewer never depends on a cached stylesheet. */
 .viewer{position:relative;width:100%;aspect-ratio:16/10;overflow:hidden}
@@ -24,7 +24,7 @@
 { "imports": { "three": "./vendor/three.module.min.js", "three/addons/": "./vendor/" } }
 </script>
 </head>
-<body class="home">
+<body>
 <a class="skip" href="#main">Skip to content</a>
 
 <header class="site-header">
@@ -54,44 +54,6 @@
     <a class="btn" href="https://www.linkedin.com/in/m-armaan" rel="noopener">LinkedIn</a>
   </p>
   </div>
-</section>
-
-<section class="wrap drawing" aria-label="Line drawing of the flagship UAV">
-<svg class="dr-defs" width="0" height="0" aria-hidden="true" focusable="false"><defs>
-<g id="uav-top"><path class="dr-out" d="M0 562 L500 657 L849 657 L852 680 L857 684 L868 685 L871 689 L872 1183 L683 1211 L683 1330 L898 1331 L900 1335 L902 1331 L1116 1330 L1117 1211 L928 1183 L930 686 L943 683 L948 680 L951 657 L1300 657 L1799 563 L1800 382 L1300 350 L968 350 L968 154 L933 53 L927 48 L918 48 L918 3 L915 0 L886 0 L883 3 L883 48 L873 48 L867 53 L832 154 L832 350 L500 350 L1 381 L0 562Z M884 1181 L885 689 L889 684 L910 684 L914 686 L915 689 L916 1181 L900 1177 L897 1179 L884 1181Z"/><path class="dr-crease" d="M950 669L950 675 M952 643L951 654 M952 643L951 651 M958 351L842 351 M849 651L848 643 M850 675L850 669 M849 654L848 643 M1 540L1 562 M1 540L1 515 M1 562L1 515 M1 448L1 467 M1 448L1 437 M1 437L1 467 M1 412L1 422 M1 412L1 406 M1 422L1 406 M1 395L1 406 M1799 406L1799 395 M1799 422L1799 412 M1799 467L1799 448 M1799 562L1799 540 M1799 515L1799 540 M1799 515L1799 562 M1799 437L1799 448 M1799 467L1799 437 M1799 406L1799 412 M1799 406L1799 422 M899 1334L898 1328 M897 1325L896 1316 M896 1311L894 1295 M890 1222L890 1234 M891 1246L890 1236 M891 1263L891 1246 M893 1282L892 1266 M891 1202L891 1211"/><path class="dr-ext" d="M683 1412 L684 1530 L898 1531 L900 1535 L902 1531 L1117 1530 L1117 1411 L928 1383 L928 974 L916 974 L916 1381 L903 1379 L900 1377 L897 1379 L884 1381 L884 974 L872 974 L872 1383 L683 1412Z"/></g>
-<g id="uav-side"><path class="dr-out" d="M0 263 L0 292 L3 295 L48 295 L48 332 L51 340 L56 342 L94 350 L542 350 L679 300 L684 293 L684 276 L689 272 L1188 271 L1205 274 L1234 275 L1272 273 L1330 267 L1331 266 L1330 264 L1310 261 L1335 251 L1335 0 L1244 0 L1179 259 L684 258 L667 221 L657 214 L643 212 L543 188 L492 180 L423 176 L394 179 L373 184 L360 189 L351 197 L153 197 L52 244 L49 249 L48 260 L3 260 L0 263Z M463 177 L463 177 L463 177 L463 177Z M1291 271 L1291 271 L1291 271 L1291 271Z M1272 273 L1272 273 L1272 273 L1272 273Z"/><path class="dr-crease" d="M645 212L651 212 M651 212L645 212 M675 238L669 224 M540 204L550 207 M553 208L561 210 M534 203L515 198 M545 206L537 204 M534 203L515 198 M448 188L467 190 M448 188L437 187 M437 187L444 188 M449 188L467 190 M412 188L422 188 M412 188L406 189 M422 188L406 189 M395 192L406 189 M1334 251L1311 260 M1308 261L1296 260 M1222 256L1234 256 M1246 256L1236 256 M1263 257L1246 256 M1282 259L1263 257 M1202 257L1211 256"/><path class="dr-ext" d="M974 259 L974 271 L1388 271 L1405 274 L1434 275 L1472 273 L1530 267 L1530 264 L1510 261 L1535 251 L1535 0 L1444 0 L1379 259 L974 259Z M1472 273 L1472 273 L1472 273 L1472 273Z M1491 271 L1491 271 L1491 271 L1491 271Z"/></g>
-<g id="uav-front"><path class="dr-out" d="M0 212 L500 219 L832 219 L832 257 L684 258 L683 273 L832 275 L832 342 L837 350 L842 351 L958 351 L964 349 L967 343 L968 275 L1117 273 L1116 258 L968 257 L968 219 L1300 219 L1799 213 L1800 189 L1300 177 L909 177 L906 1 L895 0 L891 177 L500 177 L1 188 L0 212Z M500 177 L500 177 L500 177 L500 177Z M1300 177 L1300 177 L1300 177 L1300 177Z M0 212 L0 212 L0 212 L0 212Z"/><path class="dr-crease" d="M842 198L958 198"/></g>
-</defs></svg>
-<svg class="dr dr-wide" viewBox="0 0 4300 1965" role="img" aria-label="Line drawing of the variable-stability UAV: top, side and front views. The telescoping tail is drawn retracted and, dashed, extended by 200 mm. Wingspan 1800 mm.">
-<use href="#uav-top" x="140" y="200"/>
-<line class="dr-center" x1="1040" y1="160" x2="1040" y2="1775"/>
-<line class="dr-dim" x1="140" y1="110" x2="1940" y2="110"/><line class="dr-dim" x1="140" y1="80" x2="140" y2="140"/><line class="dr-dim" x1="1940" y1="80" x2="1940" y2="140"/>
-<text class="dr-txt" x="1040" y="86" text-anchor="middle">1800 mm</text>
-<text class="dr-lbl" x="140" y="1865">TOP</text>
-<use href="#uav-side" x="2300" y="417"/>
-<line class="dr-dim" x1="3635" y1="857" x2="3835" y2="857"/><line class="dr-dim" x1="3635" y1="832" x2="3635" y2="882"/><line class="dr-dim" x1="3835" y1="832" x2="3835" y2="882"/>
-<text class="dr-txt" x="3835" y="937" text-anchor="end">200 mm tail stroke</text>
-<text class="dr-lbl" x="2300" y="367">SIDE</text>
-<use href="#uav-front" x="2300" y="1187"/>
-<line class="dr-center" x1="3200" y1="1147" x2="3200" y2="1578"/>
-<text class="dr-lbl" x="2300" y="1648">FRONT</text>
-</svg>
-<svg class="dr dr-top" viewBox="0 0 2080 1955" role="img" aria-label="Line drawing of the variable-stability UAV, top view. The telescoping tail is drawn retracted and, dashed, extended by 200 mm. Wingspan 1800 mm.">
-<use href="#uav-top" x="140" y="200"/>
-<line class="dr-center" x1="1040" y1="160" x2="1040" y2="1775"/>
-<line class="dr-dim" x1="140" y1="110" x2="1940" y2="110"/><line class="dr-dim" x1="140" y1="80" x2="140" y2="140"/><line class="dr-dim" x1="1940" y1="80" x2="1940" y2="140"/>
-<text class="dr-txt" x="1040" y="86" text-anchor="middle">1800 mm</text>
-<text class="dr-lbl" x="140" y="1855">TOP</text>
-</svg>
-</section>
-
-<section class="wrap" aria-label="Key numbers">
-  <dl class="stats">
-    <div><dt>UAV wingspan</dt><dd>1.8 m</dd></div>
-    <div><dt>CFD runs</dt><dd>18</dd></div>
-    <div><dt>Min. factor of safety, wood spars at 3g</dt><dd>3.69</dd></div>
-    <div><dt>CGPA, B.Tech Aerospace</dt><dd>9.68</dd></div>
-  </dl>
 </section>
 
 <section class="wrap" id="projects" aria-labelledby="h-projects">
@@ -271,7 +233,7 @@
     });
   }, 10000);
 </script>
-<script type="module" src="js/viewer.js?v=12"></script>
-<script type="module" src="js/viewer-cessna.js?v=12"></script>
+<script type="module" src="js/viewer.js?v=11"></script>
+<script type="module" src="js/viewer-cessna.js?v=11"></script>
 </body>
 </html>

@@ -20,8 +20,6 @@ It is a project site, so the base path is `/armaan.github.io/`. Always use **rel
 - `styles.css`: all styling, using CSS variables (`--bg --text --muted --line --accent --surface`). The dark overrides sit in a `@media (prefers-color-scheme: dark)` block plus a matching `:root[data-theme="dark"]` rule.
 - `js/viewer-core.js`: shared stage (renderer, camera, orbit, resize, theme). `js/viewer.js` (UAV) and `js/viewer-cessna.js` (Cessna, two section sliders, one active at a time, stencil-capped cut) build on it. Import it with the same `?v=N` as the pages.
 - `js/theme.js`: light/dark toggle, loaded in the head of every page. The dark variables in `styles.css` exist twice (media query and `[data-theme="dark"]`); keep them identical. The viewer listens for the `themechange` event.
-- Home page line drawing (top, side, front of the UAV, tail shown retracted and dashed extended 200 mm): inline SVG in `index.html` generated from the STLs by `tools/drawing_lines.py` and `tools/drawing_build.py` (dev-only, needs numpy and shapely in a throwaway venv). Regenerate it if `models/uav_*.stl` change. Colours come from the CSS variables, so it follows the theme. The key-numbers strip under it uses only confirmed figures; update it if those change.
-- Section numbers (01 Projects ...) on the home page are CSS counters on `.home section.wrap > h2[id]`.
 - `vendor/`: three.js r170 plus STLLoader, OrbitControls and BufferGeometryUtils, vendored locally. Do not switch to a CDN. Wire it with the importmap in the page head:
   `{"imports":{"three":"./vendor/three.module.min.js","three/addons/":"./vendor/"}}`
 - `models/`: STL exports from SolidWorks.
@@ -30,7 +28,7 @@ It is a project site, so the base path is `/armaan.github.io/`. Always use **rel
 - `.nojekyll` must stay.
 
 ## Cache busting
-GitHub Pages caches CSS and JS for roughly 10 minutes. When `styles.css` or `js/viewer.js` changes, bump the `?v=N` query on every page that links them (currently `?v=12`).
+GitHub Pages caches CSS and JS for roughly 10 minutes. When `styles.css` or `js/viewer.js` changes, bump the `?v=N` query on every page that links them (currently `?v=11`).
 
 ## 3D viewer rules (a past bug cost a day, do not regress it)
 - The viewer container needs `position:relative; aspect-ratio; overflow:hidden`. The canvas is `position:absolute; inset:0; width:100%; height:100%`. Never let the canvas sit in the normal flow, because a ResizeObserver feedback loop makes the page grow forever.
