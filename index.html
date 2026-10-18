@@ -10,8 +10,8 @@
 <meta property="og:description" content="Fixed-wing UAV design, CFD/FEA, composite and 3D-printed airframes.">
 <meta property="og:type" content="website">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%232b4c7e'/%3E%3Ctext x='16' y='22' font-family='Arial' font-size='15' font-weight='700' fill='white' text-anchor='middle'%3EMA%3C/text%3E%3C/svg%3E">
-<link rel="stylesheet" href="styles.css?v=9">
-<script src="js/theme.js?v=9"></script>
+<link rel="stylesheet" href="styles.css?v=10">
+<script src="js/theme.js?v=10"></script>
 <style>
 /* Critical viewer layout, kept inline so the viewer never depends on a cached stylesheet. */
 .viewer{position:relative;width:100%;aspect-ratio:16/10;overflow:hidden}
@@ -117,9 +117,14 @@
       </div>
       <div class="viewer-ui">
         <div class="slider-row stack">
-          <label for="cessna-sec">Section position</label>
+          <label for="cessna-sec">Cross-section from nose</label>
           <input id="cessna-sec" type="range" min="0" max="1063" step="1" value="0">
           <output id="cessna-out-sec" for="cessna-sec">Off</output>
+        </div>
+        <div class="slider-row stack">
+          <label for="cessna-sec-x">Side section from left wingtip</label>
+          <input id="cessna-sec-x" type="range" min="0" max="1430" step="1" value="0">
+          <output id="cessna-out-sec-x" for="cessna-sec-x">Off</output>
         </div>
         <div class="view-btns" role="group" aria-label="Camera views">
           <button type="button" data-view="iso">Isometric</button>
@@ -128,7 +133,7 @@
           <button type="button" data-view="front">Front</button>
         </div>
       </div>
-      <p class="hint">Drag to rotate, scroll or pinch to zoom. The slider cuts across the length of the aircraft, starting at the nose; the cut face is shaded blue-grey.</p>
+      <p class="hint">Drag to rotate, scroll or pinch to zoom. Two section sliders, one active at a time: a cross-section from the nose and a side section from the left wingtip (halfway is the centreline). The cut face is shaded blue-grey.</p>
       <noscript><p class="hint">The interactive model needs JavaScript.</p></noscript>
     </div>
 
@@ -228,7 +233,7 @@
     });
   }, 10000);
 </script>
-<script type="module" src="js/viewer.js?v=9"></script>
-<script type="module" src="js/viewer-cessna.js?v=9"></script>
+<script type="module" src="js/viewer.js?v=10"></script>
+<script type="module" src="js/viewer-cessna.js?v=10"></script>
 </body>
 </html>

@@ -1,4 +1,4 @@
-import { THREE, createStage, bindViewButtons } from './viewer-core.js?v=9';
+import { THREE, createStage, bindViewButtons } from './viewer-core.js?v=10';
 import { STLLoader } from 'three/addons/STLLoader.js';
 
 // Variable-stability UAV. The tail group slides toward -Z by up to STROKE mm.

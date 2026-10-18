@@ -10,8 +10,8 @@
 <meta property="og:description" content="1:8 scale RC Cessna 172: interactive 3D model with a section slider.">
 <meta property="og:type" content="article">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%232b4c7e'/%3E%3Ctext x='16' y='22' font-family='Arial' font-size='15' font-weight='700' fill='white' text-anchor='middle'%3EMA%3C/text%3E%3C/svg%3E">
-<link rel="stylesheet" href="styles.css?v=9">
-<script src="js/theme.js?v=9"></script>
+<link rel="stylesheet" href="styles.css?v=10">
+<script src="js/theme.js?v=10"></script>
 <style>
 /* Critical viewer layout, kept inline so the viewer never depends on a cached stylesheet. */
 .viewer{position:relative;width:100%;aspect-ratio:16/10;overflow:hidden}
@@ -58,10 +58,15 @@
   </div>
 
   <div class="viewer-ui">
-    <div class="slider-row">
-      <label for="cessna-sec">Section position</label>
+    <div class="slider-row stack">
+      <label for="cessna-sec">Cross-section from nose</label>
       <input id="cessna-sec" type="range" min="0" max="1063" step="1" value="0">
       <output id="cessna-out-sec" for="cessna-sec">Off</output>
+    </div>
+    <div class="slider-row stack">
+      <label for="cessna-sec-x">Side section from left wingtip</label>
+      <input id="cessna-sec-x" type="range" min="0" max="1430" step="1" value="0">
+      <output id="cessna-out-sec-x" for="cessna-sec-x">Off</output>
     </div>
     <div class="view-btns" role="group" aria-label="Camera views">
       <button type="button" data-view="iso">Isometric</button>
@@ -70,7 +75,7 @@
       <button type="button" data-view="front">Front</button>
     </div>
   </div>
-  <p class="hint">Drag to rotate, scroll or pinch to zoom, right-drag or two fingers to pan. The section slider cuts across the length of the aircraft, starting at the nose (0 mm is no cut) and moving toward the tail; the cut face is shaded blue-grey. Use the Isometric or Front view to look at the cut face.</p>
+  <p class="hint">Drag to rotate, scroll or pinch to zoom, right-drag or two fingers to pan. Two section sliders cut the model, and only one works at a time: moving one switches the other off. The cross-section starts at the nose and moves toward the tail. The side section is parallel to the right plane, starts at the left wingtip and moves across to the right, with the centreline halfway along the slider. 0 mm is no cut and the cut face is shaded blue-grey. Isometric shows both cuts, Front suits the cross-section and Side suits the side section.</p>
   <noscript><p class="hint">The interactive model needs JavaScript.</p></noscript>
 </section>
 
@@ -107,6 +112,6 @@
     });
   }, 10000);
 </script>
-<script type="module" src="js/viewer-cessna.js?v=9"></script>
+<script type="module" src="js/viewer-cessna.js?v=10"></script>
 </body>
 </html>

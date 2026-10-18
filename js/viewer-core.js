@@ -21,7 +21,9 @@ const VIEWS = {
 };
 
 // host: the .viewer container, canvas: its canvas, fit: projected size (mm) of the model per view.
-export function createStage({ host, canvas, target, fit, stencil = false }) {
+// views: optional camera directions that replace the defaults (iso, top, side, front).
+export function createStage({ host, canvas, target, fit, stencil = false, views = {} }) {
+  const viewDirs = { ...VIEWS, ...views };
   // Belt and braces: keep the canvas out of the page flow even if CSS fails to load.
   host.style.position = 'relative';
   canvas.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:none';
@@ -84,8 +86,8 @@ export function createStage({ host, canvas, target, fit, stencil = false }) {
   }
 
   stage.setView = function (name) {
-    const dir = (VIEWS[name] || VIEWS.iso).clone().normalize();
-    camera.position.copy(stage.target).addScaledVector(dir, fitDistance(VIEWS[name] ? name : 'iso'));
+    const dir = (viewDirs[name] || viewDirs.iso).clone().normalize();
+    camera.position.copy(stage.target).addScaledVector(dir, fitDistance(viewDirs[name] ? name : 'iso'));
     controls.target.copy(stage.target);
     camera.lookAt(stage.target);
     controls.update();
