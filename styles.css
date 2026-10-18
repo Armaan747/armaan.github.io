@@ -94,6 +94,12 @@ h1 { margin: 0 0 16px; font-size: clamp(2.25rem, 6vw, 3.5rem); line-height: 1.08
 .logo-espressif { --logo: url(img/logos/espressif.svg); aspect-ratio: 1; }
 .logo-raspberrypi { --logo: url(img/logos/raspberrypi.svg); aspect-ratio: 0.795; }
 .logos { margin: 22px 0 20px; }
+/* Employer and university marks beside experience headings, same flat mask treatment. */
+.item-head { display: flex; align-items: center; justify-content: space-between; gap: 8px 20px; flex-wrap: wrap; }
+.org-logo { flex: none; height: 22px; }
+.logo-ultratec { --logo: url(img/logos/ultratec.png); aspect-ratio: 4.26; height: 30px; }
+.logo-egnatia { --logo: url(img/logos/egnatia.svg); aspect-ratio: 3.08; height: 46px; margin: -10px 0; }
+.logo-amity { --logo: url(img/logos/amity-dubai.png); aspect-ratio: 1.95; height: 38px; margin: -6px 0; }
 .hero .logos { grid-column: 1 / -1; justify-content: center; margin: 12px 0 0; }
 .site-footer .legal { margin-top: 6px; padding-top: 0; border-top: 0; font-size: 0.85rem; }
 .copy-note { min-height: 1.4em; margin: 8px 0 0; color: var(--muted); font-size: 0.9rem; }

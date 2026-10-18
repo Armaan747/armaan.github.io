@@ -28,13 +28,13 @@ Design skills are installed locally in `.claude/skills/` (kept out of git): `fro
   `{"imports":{"three":"./vendor/three.module.min.js","three/addons/":"./vendor/"}}`
 - `models/`: STL exports from SolidWorks.
 - `img/`: optimised JPEGs (at most about 1200 px wide).
-- `img/logos/`: tool logos (SVG, see its README.txt for sources). They are drawn as flat single-colour masks in `styles.css` (`.logo-*`), never in brand colours, so they follow the theme. Add a logo only if an accurate mark exists; do not invent one. Shown in a centred row in the hero.
+- `img/logos/`: tool logos (SVG, see its README.txt for sources). They are drawn as flat single-colour masks in `styles.css` (`.logo-*`), never in brand colours, so they follow the theme. Add a logo only if an accurate mark exists; do not invent one. Shown in a centred row in the hero. Three organisation marks (Ultratec, Egnatia, Amity University Dubai) sit beside the Experience headings (`.org-logo`); they are the organisations' own white-on-transparent files, cropped to the wordmark (Amity shield and Egnatia anniversary mark dropped on purpose).
 - `js/contact.js`: copies the email address when a mailto link is clicked (mailto does nothing without a mail app) and says so in the `.copy-note` live region.
 - `assets/Mohammed_Armaan_CV.pdf`
 - `.nojekyll` must stay.
 
 ## Cache busting
-GitHub Pages caches CSS and JS for roughly 10 minutes. When `styles.css` or `js/viewer.js` changes, bump the `?v=N` query on every page that links them (currently `?v=17`).
+GitHub Pages caches CSS and JS for roughly 10 minutes. When `styles.css` or `js/viewer.js` changes, bump the `?v=N` query on every page that links them (currently `?v=18`).
 
 ## 3D viewer rules (a past bug cost a day, do not regress it)
 - The viewer container needs `position:relative; aspect-ratio; overflow:hidden`. The canvas is `position:absolute; inset:0; width:100%; height:100%`. Never let the canvas sit in the normal flow, because a ResizeObserver feedback loop makes the page grow forever.
