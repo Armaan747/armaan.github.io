@@ -33,7 +33,7 @@ Design skills are installed locally in `.claude/skills/` (kept out of git): `fro
 - `img/`: optimised JPEGs (at most about 1200 px wide).
 - `img/logos/`: tool logos (SVG, see its README.txt for sources). They are drawn as flat single-colour masks in `styles.css` (`.logo-*`), never in brand colours, so they follow the theme. Add a logo only if an accurate mark exists; do not invent one. Shown in a centred row in the hero. Three organisation marks (Ultratec, Egnatia, Amity University Dubai) sit beside the Experience headings (`.org-logo`); they are the organisations' own white-on-transparent files, cropped to the wordmark (Amity shield and Egnatia anniversary mark dropped on purpose).
 - `js/contact.js`: copies the email address when a mailto link is clicked (mailto does nothing without a mail app) and says so in the `.copy-note` live region.
-- `assets/Mohammed_Armaan_CV.pdf`
+- `assets/Mohammed_Armaan_CV_AE.pdf` and `_IN.pdf`: same CV, only the location line differs (Dubai, UAE / Bengaluru, India). The hero button links the IN file to visitors in an Indian time zone and the AE file to everyone else (same `inIndia` check as the location line). Sources are in `talktoclaude/cv/` (not in git). Check any new CV for a personal phone number before adding it.
 - `.nojekyll` must stay.
 
 ## Cache busting
