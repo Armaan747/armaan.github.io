@@ -25,6 +25,8 @@ Design skills are installed locally in `.claude/skills/` (kept out of git): `fro
 - `styles.css`: all styling, using CSS variables (`--bg --text --muted --line --accent --surface`). The accent is aviation orange (#c2410c light, #ff9a4d dark). Aviation touches are type-led: a dashed centreline rule above each h2, and small-caps labels with tabular numerals on spec lines (`dl.plate`) and readouts. The dark overrides sit in a `@media (prefers-color-scheme: dark)` block plus a matching `:root[data-theme="dark"]` rule.
 - `js/viewer-core.js`: shared stage (renderer, camera, orbit, resize, theme). `js/viewer.js` (UAV) and `js/viewer-cessna.js` (Cessna, two section sliders, one active at a time, stencil-capped cut) build on it. Import it with the same `?v=N` as the pages.
 - `js/theme.js`: light/dark toggle, loaded in the head of every page. The dark variables in `styles.css` exist twice (media query and `[data-theme="dark"]`); keep them identical. The viewer listens for the `themechange` event.
+- `vendor/fonts/`: Barlow 600 and 700 (latin woff2, SIL OFL, licence file alongside), self-hosted and used for the header name, h1, h2 and h3 only via `--display`; body stays on the system font. Do not add fonts from a CDN.
+- Contact section: the one solid block of accent colour (`.contact-panel`, flat, no gradient). Keep it the only one.
 - `vendor/`: three.js r170 plus STLLoader, OrbitControls and BufferGeometryUtils, vendored locally. Do not switch to a CDN. Wire it with the importmap in the page head:
   `{"imports":{"three":"./vendor/three.module.min.js","three/addons/":"./vendor/"}}`
 - `models/`: STL exports from SolidWorks.

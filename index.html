@@ -10,8 +10,9 @@
 <meta property="og:description" content="Fixed-wing UAV design, CFD/FEA, composite and 3D-printed airframes.">
 <meta property="og:type" content="website">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23c2410c'/%3E%3Ctext x='16' y='22' font-family='Arial' font-size='15' font-weight='700' fill='white' text-anchor='middle'%3EMA%3C/text%3E%3C/svg%3E">
-<link rel="stylesheet" href="styles.css?v=19">
-<script src="js/theme.js?v=19"></script>
+<link rel="preload" href="vendor/fonts/barlow-700.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="styles.css?v=20">
+<script src="js/theme.js?v=20"></script>
 <style>
 /* Critical viewer layout, kept inline so the viewer never depends on a cached stylesheet. */
 .viewer{position:relative;width:100%;aspect-ratio:16/10;overflow:hidden}
@@ -295,6 +296,7 @@
 
 <section class="wrap" id="contact" aria-labelledby="h-contact">
   <h2 id="h-contact">Contact</h2>
+  <div class="contact-panel">
   <p>Looking for UAV design roles in <span id="loc-contact">the UAE</span>, fixed-wing and rotorcraft.</p>
   <script>if (inIndia) document.getElementById("loc-contact").textContent = "India";</script>
   <p class="actions">
@@ -302,6 +304,7 @@
     <a class="btn" href="https://www.linkedin.com/in/m-armaan" target="_blank" rel="noopener noreferrer">linkedin.com/in/m-armaan</a>
   </p>
   <p class="copy-note" role="status"></p>
+  </div>
 </section>
 </main>
 
@@ -318,9 +321,9 @@
     });
   }, 10000);
 </script>
-<script src="js/contact.js?v=19" defer></script>
-<script type="module" src="js/viewer.js?v=19"></script>
-<script type="module" src="js/viewer-cessna.js?v=19"></script>
-<script type="module" src="js/viewer-lander.js?v=19"></script>
+<script src="js/contact.js?v=20" defer></script>
+<script type="module" src="js/viewer.js?v=20"></script>
+<script type="module" src="js/viewer-cessna.js?v=20"></script>
+<script type="module" src="js/viewer-lander.js?v=20"></script>
 </body>
 </html>
