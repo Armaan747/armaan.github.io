@@ -33,7 +33,7 @@
 }
 
 * { box-sizing: border-box; }
-html { scroll-behavior: auto; }
+html { scroll-behavior: auto; scroll-padding-top: 96px; }
 body {
   margin: 0;
   background: var(--bg);
@@ -53,7 +53,7 @@ a:focus-visible, .btn:focus-visible { outline: 2px solid var(--accent); outline-
 .skip { position: absolute; left: -999px; top: 0; background: var(--accent); color: var(--accent-text); padding: 8px 12px; }
 .skip:focus { left: 8px; top: 8px; z-index: 10; }
 
-.site-header { border-bottom: 1px solid var(--line); }
+.site-header { position: sticky; top: 0; z-index: 50; background: var(--bg); border-bottom: 1px solid var(--line); }
 .bar { display: flex; flex-wrap: wrap; gap: 8px 24px; align-items: center; justify-content: space-between; padding-top: 14px; padding-bottom: 14px; }
 .brand { color: var(--text); font-weight: 650; text-decoration: none; }
 nav { display: flex; flex-wrap: wrap; gap: 4px 18px; font-size: 0.93rem; }

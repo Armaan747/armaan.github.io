@@ -35,7 +35,7 @@ Design skills are installed locally in `.claude/skills/` (kept out of git): `fro
 - `.nojekyll` must stay.
 
 ## Cache busting
-GitHub Pages caches CSS and JS for roughly 10 minutes. When `styles.css` or `js/viewer.js` changes, bump the `?v=N` query on every page that links them (currently `?v=18`).
+GitHub Pages caches CSS and JS for roughly 10 minutes. When `styles.css` or `js/viewer.js` changes, bump the `?v=N` query on every page that links them (currently `?v=19`).
 
 ## 3D viewer rules (a past bug cost a day, do not regress it)
 - The viewer container needs `position:relative; aspect-ratio; overflow:hidden`. The canvas is `position:absolute; inset:0; width:100%; height:100%`. Never let the canvas sit in the normal flow, because a ResizeObserver feedback loop makes the page grow forever.
